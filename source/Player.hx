@@ -23,6 +23,7 @@ class Player extends FlxSprite
 		FlxControl.create(this, FlxControlHandler.MOVEMENT_INSTANT, FlxControlHandler.STOPPING_INSTANT, 1, true, true);
 		// Enable cursor keys, but only the left and right ones
 		FlxControl.player1.setCursorControl(true,true,true,true);
+		//FlxControl.player1.setHJKLControl();
 		// All speeds are in pixels per second, the follow lets the player run left/right
 		FlxControl.player1.setStandardSpeed(100);
 		//FlxControl.player1.setFireButton("Z",FlxControlHandler.KEYMODE_JUST_DOWN,1000,pistol.fire);
@@ -43,7 +44,6 @@ class Player extends FlxSprite
 		if (y > FlxG.height - height) {
 			y = FlxG.height - height;
 		}
-		FlxG.log(facing);
 
 	}
 }

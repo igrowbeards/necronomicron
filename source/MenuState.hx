@@ -16,6 +16,7 @@ import org.flixel.FlxObject;
 import org.flixel.FlxPoint;
 import org.flixel.FlxGroup;
 import org.flixel.plugin.photonstorm.FlxWeapon;
+import org.flixel.plugin.photonstorm.FlxMath;
 
 class MenuState extends FlxState {
 
@@ -70,7 +71,7 @@ class MenuState extends FlxState {
 		1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1];
 
 		level = new FlxTilemap();
-		level.loadMap(FlxTilemap.arrayToCSV(data, 40), "assets/tiles.png", 16, 16, FlxTilemap.AUTO);
+		level.loadMap(FlxTilemap.arrayToCSV(createLevel(), 40), "assets/tiles.png", 16, 16, FlxTilemap.AUTO);
 		add(level);
 
 
@@ -78,7 +79,7 @@ class MenuState extends FlxState {
 		//pistol.makeImageBullet(50,makeGraphic(5,5,0xff224330),5);
 		pistol.makePixelBullet(50,5,5,0xff224330);
 		//pistol.setBulletDirection(FlxWeapon.BULLET_UP,200);
-		pistol.setFireRate(100);
+		pistol.setFireRate(1000);
 		pistol.setBulletSpeed(250);
 		pistol.setParent(player,"x","y",8,8,true);
 		add(pistol.group);
@@ -126,6 +127,21 @@ class MenuState extends FlxState {
 
 	public function bulletHitLevel(b:FlxObject,l:FlxObject) {
 		b.exists = false;
+	}
+
+	public function createLevel() {
+		var levelArray:Array<Int> = [];
+		var i:Int = 0;
+		while (i < ((FlxG.width / 16) * (FlxG.height /16))) {
+			if (FlxMath.rand(1,8) == 1) {
+				levelArray.push(1);
+			}
+			else {
+				levelArray.push(0);
+			}
+			i++;
+		}
+		return levelArray;
 	}
 
 }
