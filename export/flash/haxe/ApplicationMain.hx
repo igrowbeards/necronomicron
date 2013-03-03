@@ -282,6 +282,11 @@ class ApplicationMain {
 			 return Assets.getText ("assets/HaxeFlixel.svg");
          
 		
+		if (inName=="assets/player.png")
+			 
+            return Assets.getBitmapData ("assets/player.png");
+         
+		
 		if (inName=="assets/tiles.png")
 			 
             return Assets.getBitmapData ("assets/tiles.png");
@@ -343,6 +348,7 @@ class NME_assets_data_vcr_step_png extends nme.display.BitmapData { public funct
 class NME_assets_data_vcr_stop_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_data_vis_bounds_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_haxeflixel_svg extends nme.utils.ByteArray { }
+class NME_assets_player_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_tiles_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 
 
