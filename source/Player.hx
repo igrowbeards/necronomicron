@@ -24,6 +24,11 @@ class Player extends FlxSprite
 		addAnimation("walk_up", [8,10,8,11], 4, true);
 		play("idle");
 
+		width = 14;
+		offset.x = 1;
+		height = 14;
+		offset.y = 1;
+
 		if (FlxG.getPlugin(FlxControl) == null) {
 			FlxG.addPlugin(new FlxControl());
 		}
