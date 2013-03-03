@@ -15,6 +15,7 @@ import org.flixel.FlxTilemap;
 import org.flixel.FlxObject;
 import org.flixel.FlxPoint;
 import org.flixel.FlxGroup;
+import org.flixel.plugin.photonstorm.FlxWeapon;
 
 class MenuState extends FlxState {
 
@@ -23,6 +24,7 @@ class MenuState extends FlxState {
 	public var enemies:FlxGroup;
 	public var enemy:Enemy;
 	public var enemyPath:FlxPath;
+	public var pistol:FlxWeapon;
 
 	override public function create():Void {
 		FlxG.bgColor = 0xffa8ba4a;
@@ -71,6 +73,15 @@ class MenuState extends FlxState {
 		level.loadMap(FlxTilemap.arrayToCSV(data, 40), "assets/tiles.png", 16, 16, FlxTilemap.AUTO);
 		add(level);
 
+
+		pistol = new FlxWeapon("pistol",player,"x","y");
+		//pistol.makeImageBullet(50,makeGraphic(5,5,0xff224330),5);
+		pistol.makePixelBullet(50,5,5,0xff224330);
+		//pistol.setBulletDirection(FlxWeapon.BULLET_UP,200);
+		pistol.setFireRate(100);
+		pistol.setBulletSpeed(250);
+		pistol.setParent(player,"x","y",8,8,true);
+		add(pistol.group);
  	}
 
 	override public function destroy():Void {
@@ -81,6 +92,8 @@ class MenuState extends FlxState {
 		super.update();
 		FlxG.collide(player,level);
 		FlxG.collide(enemy,level);
+		FlxG.collide(pistol.group,level,bulletHitLevel);
+		FlxG.collide(pistol.group, enemy,bulletHitEnemy);
 
 		var pathStart:FlxPoint = new FlxPoint(enemy.x + enemy.width / 2, enemy.y + enemy.height / 2);
 		var pathEnd:FlxPoint = new FlxPoint(player.x + player.width / 2, player.y + player.height / 2);
@@ -100,6 +113,19 @@ class MenuState extends FlxState {
 			enemy.stopFollowingPath(true);
 		}
 
+		if (FlxG.keys.justPressed("Z")) {
+			pistol.fire();
+		}
+
+	}
+
+	public function bulletHitEnemy(b:FlxObject,e:FlxObject) {
+		b.exists = false;
+		e.exists = false;
+	}
+
+	public function bulletHitLevel(b:FlxObject,l:FlxObject) {
+		b.exists = false;
 	}
 
 }
