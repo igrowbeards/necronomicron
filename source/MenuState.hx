@@ -86,18 +86,20 @@ class MenuState extends FlxState {
 		var pathEnd:FlxPoint = new FlxPoint(player.x + player.width / 2, player.y + player.height / 2);
 		enemyPath = level.findPath(pathStart,pathEnd);
 
-		if (enemyPath != null) {
-			player.stopFollowingPath(true);
-		}
-
-		if (enemyPath != null) {
-			enemy.followPath(enemyPath,10);
-		}
-
 		if (enemy.pathSpeed == 0) {
 			enemy.velocity.x = 0;
 			enemy.velocity.y = 0;
 		}
+
+		if (level.ray(pathStart,pathEnd)) {
+			if (enemyPath != null) {
+				enemy.followPath(enemyPath,80);
+			}
+		}
+		else {
+			enemy.stopFollowingPath(true);
+		}
+
 	}
 
 }
