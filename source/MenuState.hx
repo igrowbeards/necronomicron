@@ -17,6 +17,7 @@ import org.flixel.FlxPoint;
 import org.flixel.FlxGroup;
 import org.flixel.plugin.photonstorm.FlxWeapon;
 import org.flixel.plugin.photonstorm.FlxMath;
+import addons.FlxBackdrop;
 
 class MenuState extends FlxState {
 
@@ -83,6 +84,8 @@ class MenuState extends FlxState {
 		pistol.setBulletSpeed(250);
 		pistol.setParent(player,"x","y",8,8,true);
 		add(pistol.group);
+        add(new FlxBackdrop("assets/scanlines.png", 0, 0, true, true));
+        add(new FlxBackdrop("assets/vignette.png", 0, 0, false, false));
  	}
 
 	override public function destroy():Void {

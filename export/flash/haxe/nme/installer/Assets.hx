@@ -117,8 +117,12 @@ class Assets {
 			resourceTypes.set ("assets/HaxeFlixel.svg", "text");
 			resourceClasses.set ("assets/player.png", NME_assets_player_png);
 			resourceTypes.set ("assets/player.png", "image");
+			resourceClasses.set ("assets/scanlines.png", NME_assets_scanlines_png);
+			resourceTypes.set ("assets/scanlines.png", "image");
 			resourceClasses.set ("assets/tiles.png", NME_assets_tiles_png);
 			resourceTypes.set ("assets/tiles.png", "image");
+			resourceClasses.set ("assets/vignette.png", NME_assets_vignette_png);
+			resourceTypes.set ("assets/vignette.png", "image");
 			
 			
 			initialized = true;
