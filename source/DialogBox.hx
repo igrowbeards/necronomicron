@@ -12,6 +12,7 @@ class DialogBox extends FlxGroup {
 	public var textArray:Array<String>;
 	public var showing:Bool;
 	public var currentText:Int;
+	public var portrait:FlxSprite;
 
 	override public function new():Void {
 		super();
@@ -19,13 +20,16 @@ class DialogBox extends FlxGroup {
 
 		textArray = ["Test Test Test","Yep It Works!"];
 
-		bg = new FlxSprite(40,40);
-		bg.makeGraphic(560,100,0xff224330);
-		add(bg);
+		portrait = new FlxSprite(50,34,"assets/player_dialog.png");
 
-		text = new FlxText(60,60,560,textArray[currentText]);
+		bg = new FlxSprite(48,32);
+		bg.makeGraphic(544,144,0xff224330);
+		add(bg);
+		add(portrait);
+
+		text = new FlxText(208,48,368,textArray[currentText]);
         text.color = 0xffa8ba4a;
-        text.size = 32;
+        text.size = 18;
 		add(text);
 	}
 
