@@ -11,18 +11,21 @@ class Player extends FlxSprite
 {
 
 	public var pistol:FlxWeapon;
+	public var pistolAmmo:Int;
 
 	override public function new(X:Int,Y:Int) {
-		super(X,Y);
+		super(X * 16,Y * 16);
 		//makeGraphic(14,14,0xff224330);
 		loadGraphic("assets/player.png",true,true,16,16,true);
 		addAnimation("idle", [0,1], 2, true);
-		addAnimation("walk", [0,2,0,3], 9, true);
+		addAnimation("walk", [0,2,0,3], 10, true);
 		addAnimation("idle_down", [4,5], 2, true);
-		addAnimation("walk_down", [4,6,4,7], 9, true);
+		addAnimation("walk_down", [4,6,4,7], 10, true);
 		addAnimation("idle_up", [8,9], 2, true);
-		addAnimation("walk_up", [8,10,8,11], 9, true);
+		addAnimation("walk_up", [8,10,8,11], 10, true);
 		play("idle");
+
+		pistolAmmo = 6;
 
 		width = 14;
 		offset.x = 1;
