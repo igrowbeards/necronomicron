@@ -62,7 +62,7 @@ class Player extends FlxSprite
 			y = FlxG.height - height;
 		}
 
-		if (velocity.x != 0) {
+		if (velocity.x != 0 && velocity.y >= 0) {
 			play("walk");
 		}
 

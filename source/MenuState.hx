@@ -97,7 +97,7 @@ class MenuState extends FlxState {
 
 			if (level.ray(pathStart,pathEnd)) {
 				if (enemyPath != null) {
-					enemy.followPath(enemyPath,30);
+					enemy.followPath(enemyPath,enemy.runSpeed);
 				}
 			}
 			else {
