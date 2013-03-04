@@ -30,6 +30,7 @@ class MenuState extends FlxState {
 	public var pistol:FlxWeapon;
 	public var remainingAmmo:FlxText;
 	public var ammoPickup:Ammo;
+	public var dialog:DialogBox;
 
 	override public function create():Void {
 		FlxG.bgColor = 0xffa8ba4a;
@@ -45,6 +46,9 @@ class MenuState extends FlxState {
 		level = new FlxTilemap();
 		level.loadMap(FlxTilemap.arrayToCSV(createLevel(), 40), "assets/tiles.png", 16, 16, FlxTilemap.AUTO);
 		add(level);
+
+		dialog = new DialogBox();
+		dialog.exists = false;
 
         remainingAmmo = new FlxText(10,10,200,"6");
         remainingAmmo.color = 0xff213625;
@@ -62,6 +66,7 @@ class MenuState extends FlxState {
         add(remainingAmmo);
         ammoPickup = new Ammo(10,10);
         add(ammoPickup);
+		add(dialog);
         add(new FlxBackdrop("assets/scanlines.png", 0, 0, true, true));
         add(new FlxBackdrop("assets/vignette.png", 0, 0, false, false));
 
@@ -73,38 +78,44 @@ class MenuState extends FlxState {
 	}
 
 	override public function update():Void {
-		super.update();
-		FlxG.collide(player,level);
-		FlxG.collide(enemy,level);
-		FlxG.collide(pistol.group,level,bulletHitLevel);
-		FlxG.collide(pistol.group, enemy,bulletHitEnemy);
-		FlxG.collide(player,ammoPickup,getAmmo);
+		if (!dialog.exists) {
+			super.update();
+			FlxG.collide(player,level);
+			FlxG.collide(enemy,level);
+			FlxG.collide(pistol.group,level,bulletHitLevel);
+			FlxG.collide(pistol.group, enemy,bulletHitEnemy);
+			FlxG.collide(player,ammoPickup,getAmmo);
 
-		var pathStart:FlxPoint = new FlxPoint(enemy.x + enemy.width / 2, enemy.y + enemy.height / 2);
-		var pathEnd:FlxPoint = new FlxPoint(player.x + player.width / 2, player.y + player.height / 2);
-		enemyPath = level.findPath(pathStart,pathEnd);
+			var pathStart:FlxPoint = new FlxPoint(enemy.x + enemy.width / 2, enemy.y + enemy.height / 2);
+			var pathEnd:FlxPoint = new FlxPoint(player.x + player.width / 2, player.y + player.height / 2);
+			enemyPath = level.findPath(pathStart,pathEnd);
 
-		if (enemy.pathSpeed == 0) {
-			enemy.velocity.x = 0;
-			enemy.velocity.y = 0;
-		}
-
-		if (level.ray(pathStart,pathEnd)) {
-			if (enemyPath != null) {
-				enemy.followPath(enemyPath,80);
+			if (enemy.pathSpeed == 0) {
+				enemy.velocity.x = 0;
+				enemy.velocity.y = 0;
 			}
+
+			if (level.ray(pathStart,pathEnd)) {
+				if (enemyPath != null) {
+					enemy.followPath(enemyPath,80);
+				}
+			}
+			else {
+				enemy.stopFollowingPath(true);
+			}
+
+			if (FlxG.keys.justPressed("Z") && Registry.player.pistolAmmo > 0) {
+				if (pistol.fire()) {
+					decrease_ammo();
+				}
+			}
+
+			remainingAmmo.text = Std.string(Registry.player.pistolAmmo);
+
 		}
 		else {
-			enemy.stopFollowingPath(true);
+			dialog.update_text();
 		}
-
-		if (FlxG.keys.justPressed("Z") && Registry.player.pistolAmmo > 0) {
-			if (pistol.fire()) {
-				decrease_ammo();
-			}
-		}
-
-		remainingAmmo.text = Std.string(Registry.player.pistolAmmo);
 
 	}
 
@@ -124,6 +135,7 @@ class MenuState extends FlxState {
 	public function getAmmo(p:FlxObject,a:FlxObject) {
 		a.kill();
 		Registry.player.pistolAmmo++;
+		dialog.exists = true;
 	}
 
 	public function createLevel() {
