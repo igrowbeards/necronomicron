@@ -55,13 +55,13 @@ class MenuState extends FlxState {
         remainingAmmo.shadow = 0xff000000;
 
 		pistol = new FlxWeapon("pistol",player,"x","y");
-		//pistol.makeImageBullet(50,makeGraphic(5,5,0xff224330),5);
-		pistol.makePixelBullet(50,5,5,0xff224330);
-		//pistol.setBulletDirection(FlxWeapon.BULLET_UP,200);
+		pistol.makePixelBullet(10,5,5,0xff224330);
 		pistol.setFireRate(1000);
 		pistol.setBulletSpeed(250);
 		pistol.setParent(player,"x","y",8,8,true);
 		add(pistol.group);
+		Registry.pistol = pistol;
+
         add(remainingAmmo);
         ammoPickup = new Ammo(10,10);
         add(ammoPickup);
