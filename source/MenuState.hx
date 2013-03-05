@@ -78,10 +78,10 @@ class MenuState extends FlxState {
       	Registry.darkness = darkness;
 
 		add(light);
-		add(darkness);
-		add(dialog);
         add(remainingAmmo);
+		add(dialog);
         add(new FlxBackdrop("assets/scanlines.png", 0, 0, true, true));
+		add(darkness);
         add(new FlxBackdrop("assets/vignette.png", 0, 0, false, false));
 
  	}
