@@ -115,6 +115,8 @@ class Assets {
 			resourceTypes.set ("assets/data/vcr/stop.png", "image");
 			resourceClasses.set ("assets/data/vis/bounds.png", NME_assets_data_vis_bounds_png);
 			resourceTypes.set ("assets/data/vis/bounds.png", "image");
+			resourceClasses.set ("assets/glow-light.png", NME_assets_glow_light_png);
+			resourceTypes.set ("assets/glow-light.png", "image");
 			resourceClasses.set ("assets/HaxeFlixel.svg", NME_assets_haxeflixel_svg);
 			resourceTypes.set ("assets/HaxeFlixel.svg", "text");
 			resourceClasses.set ("assets/player.png", NME_assets_player_png);

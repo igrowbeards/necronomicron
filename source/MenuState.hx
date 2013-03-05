@@ -3,6 +3,7 @@ package;
 import nme.Assets;
 import nme.geom.Rectangle;
 import nme.net.SharedObject;
+import nme.display.BlendMode;
 import org.flixel.FlxButton;
 import org.flixel.FlxG;
 import org.flixel.FlxPath;
@@ -31,11 +32,12 @@ class MenuState extends FlxState {
 	public var remainingAmmo:FlxText;
 	public var ammoPickup:Ammo;
 	public var dialog:DialogBox;
+	public var darkness:FlxSprite;
+	public var light:Light;
 
 	override public function create():Void {
 		FlxG.bgColor = 0xffa8ba4a;
 		FlxG.mouse.hide();
-
 		level = new FlxTilemap();
 		level.loadMap(FlxTilemap.arrayToCSV(createLevel(), 40), "assets/tiles.png", 16, 16, FlxTilemap.AUTO);
 		add(level);
@@ -44,6 +46,8 @@ class MenuState extends FlxState {
 		player = new Player(3,3);
 		add(player);
 		Registry.player = player;
+
+		light = new Light(30,30);
 
 
 		dialog = new DialogBox();
@@ -62,15 +66,23 @@ class MenuState extends FlxState {
 		add(pistol.group);
 		Registry.pistol = pistol;
 
-        add(remainingAmmo);
         ammoPickup = new Ammo(10,10);
         add(ammoPickup);
-		add(dialog);
 		enemy = new Enemy(35,28);
 		add(enemy);
+
+		darkness = new FlxSprite(0,0);
+		darkness.makeGraphic(FlxG.width,FlxG.height,0xff000000);
+		darkness.scrollFactor.x = darkness.scrollFactor.y = 0;
+      	darkness.blend = nme.display.BlendMode.MULTIPLY;
+      	Registry.darkness = darkness;
+
+		add(light);
+		add(darkness);
+		add(dialog);
+        add(remainingAmmo);
         add(new FlxBackdrop("assets/scanlines.png", 0, 0, true, true));
         add(new FlxBackdrop("assets/vignette.png", 0, 0, false, false));
-
 
  	}
 
@@ -96,6 +108,11 @@ class MenuState extends FlxState {
 
 	}
 
+	override public function draw():Void {
+		darkness.fill(0xff000000);
+		super.draw();
+	}
+
 	public function bulletHitEnemy(b:FlxObject,e:FlxObject) {
 		b.exists = false;
 		e.exists = false;
@@ -107,7 +124,9 @@ class MenuState extends FlxState {
 
 	public function getAmmo(p:FlxObject,a:FlxObject) {
 		a.kill();
-		Registry.player.pistolAmmo++;
+		if (Registry.player.pistolAmmo <= 5) {
+			Registry.player.pistolAmmo++;
+		}
 		dialog.exists = true;
 	}
 

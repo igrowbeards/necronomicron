@@ -282,6 +282,11 @@ class ApplicationMain {
             return Assets.getBitmapData ("assets/data/vis/bounds.png");
          
 		
+		if (inName=="assets/glow-light.png")
+			 
+            return Assets.getBitmapData ("assets/glow-light.png");
+         
+		
 		if (inName=="assets/HaxeFlixel.svg")
 			 
 			 return Assets.getText ("assets/HaxeFlixel.svg");
@@ -368,6 +373,7 @@ class NME_assets_data_vcr_restart_png extends nme.display.BitmapData { public fu
 class NME_assets_data_vcr_step_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_data_vcr_stop_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_data_vis_bounds_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_glow_light_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_haxeflixel_svg extends nme.utils.ByteArray { }
 class NME_assets_player_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_player_dialog_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
