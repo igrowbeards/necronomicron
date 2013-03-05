@@ -36,16 +36,15 @@ class MenuState extends FlxState {
 		FlxG.bgColor = 0xffa8ba4a;
 		FlxG.mouse.hide();
 
+		level = new FlxTilemap();
+		level.loadMap(FlxTilemap.arrayToCSV(createLevel(), 40), "assets/tiles.png", 16, 16, FlxTilemap.AUTO);
+		add(level);
+		Registry.level = level;
+
 		player = new Player(3,3);
 		add(player);
 		Registry.player = player;
 
-		enemy = new Enemy(35,28);
-		add(enemy);
-
-		level = new FlxTilemap();
-		level.loadMap(FlxTilemap.arrayToCSV(createLevel(), 40), "assets/tiles.png", 16, 16, FlxTilemap.AUTO);
-		add(level);
 
 		dialog = new DialogBox();
 		dialog.exists = false;
@@ -67,6 +66,8 @@ class MenuState extends FlxState {
         ammoPickup = new Ammo(10,10);
         add(ammoPickup);
 		add(dialog);
+		enemy = new Enemy(35,28);
+		add(enemy);
         add(new FlxBackdrop("assets/scanlines.png", 0, 0, true, true));
         add(new FlxBackdrop("assets/vignette.png", 0, 0, false, false));
 
@@ -86,30 +87,6 @@ class MenuState extends FlxState {
 			FlxG.collide(pistol.group, enemy,bulletHitEnemy);
 			FlxG.collide(player,ammoPickup,getAmmo);
 
-			var pathStart:FlxPoint = new FlxPoint(enemy.x + enemy.width / 2, enemy.y + enemy.height / 2);
-			var pathEnd:FlxPoint = new FlxPoint(player.x + player.width / 2, player.y + player.height / 2);
-			enemyPath = level.findPath(pathStart,pathEnd);
-
-			if (enemy.pathSpeed == 0) {
-				enemy.velocity.x = 0;
-				enemy.velocity.y = 0;
-			}
-
-			if (level.ray(pathStart,pathEnd)) {
-				if (enemyPath != null) {
-					enemy.followPath(enemyPath,enemy.runSpeed);
-				}
-			}
-			else {
-				enemy.stopFollowingPath(true);
-			}
-
-			if (FlxG.keys.justPressed("Z") && Registry.player.pistolAmmo > 0) {
-				if (pistol.fire()) {
-					decrease_ammo();
-				}
-			}
-
 			remainingAmmo.text = Std.string(Registry.player.pistolAmmo);
 
 		}
@@ -117,10 +94,6 @@ class MenuState extends FlxState {
 			dialog.update_text();
 		}
 
-	}
-
-	public function decrease_ammo():Void {
-		Registry.player.pistolAmmo--;
 	}
 
 	public function bulletHitEnemy(b:FlxObject,e:FlxObject) {

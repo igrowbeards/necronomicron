@@ -85,5 +85,11 @@ class Player extends FlxSprite
 			play("walk_down");
 		}
 
+		if (FlxG.keys.justPressed("Z") && Registry.player.pistolAmmo > 0) {
+			if (pistol.fire()) {
+				Registry.player.pistolAmmo--;
+			}
+		}
+
 	}
 }
