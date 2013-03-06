@@ -9,7 +9,7 @@ class DialogBox extends FlxGroup {
 
 	public var bg:FlxSprite;
 	public var dialogText:FlxText;
-	public var dialogArray:Array<String>;
+	public var dialogArray:Array<Array<String>>;
 	public var showing:Bool;
 	public var currentText:Int;
 	public var portrait:FlxSprite;
@@ -18,7 +18,9 @@ class DialogBox extends FlxGroup {
 		super();
 		currentText = 0;
 
-		dialogArray = ["Test Test Test","Yep It Works!"];
+		dialogArray = [
+			["assets/player_dialog.png","Multi-dimensional Array Test"],
+		];
 
 		portrait = new FlxSprite(50,34,"assets/player_dialog.png");
 
@@ -27,7 +29,7 @@ class DialogBox extends FlxGroup {
 		add(bg);
 		add(portrait);
 
-		dialogText = new FlxText(208,48,368,dialogArray[currentText]);
+		dialogText = new FlxText(208,48,368,dialogArray[0][1]);
         dialogText.color = 0xff000000;
         dialogText.size = 14;
 		add(dialogText);
@@ -37,7 +39,7 @@ class DialogBox extends FlxGroup {
 		if (FlxG.keys.justPressed("X")) {
 			currentText++;
 			if (currentText < dialogArray.length) {
-				dialogText.text = dialogArray[currentText];
+				dialogText.text = dialogArray[currentText][1];
 			}
 			else {
 				exists = false;
@@ -45,12 +47,14 @@ class DialogBox extends FlxGroup {
 		}
 	}
 
+	/*
 	public function quickUpdate(graphic:String,txt:String):Void {
 		portrait.loadGraphic(graphic);
 		this.exists = true;
 		dialogArray = [];
-		dialogArray.push(txt);
+		dialogArray.push();
 		dialogText.text = txt;
 	}
+	*/
 
 }

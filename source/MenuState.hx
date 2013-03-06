@@ -51,7 +51,6 @@ class MenuState extends FlxState {
 
 		light = new Light(30,30);
 
-
 		dialog = new DialogBox();
 		dialog.exists = false;
 		Registry.dialog = dialog;
@@ -135,7 +134,8 @@ class MenuState extends FlxState {
 	}
 
 	public function getGun(p:FlxObject,dg:FlxObject):Void {
-		Registry.dialog.quickUpdate("assets/dialog_gun.png", "You find a gun on the dead guard.");
+		//Registry.dialog.quickUpdate("assets/dialog_gun.png", "You find a gun on the dead guard.");
+		dialog.exists = true;
 	}
 
 	public function createLevel() {
