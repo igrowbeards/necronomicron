@@ -47,14 +47,14 @@ class DialogBox extends FlxGroup {
 		}
 	}
 
-	/*
+
 	public function quickUpdate(graphic:String,txt:String):Void {
 		portrait.loadGraphic(graphic);
 		this.exists = true;
 		dialogArray = [];
-		dialogArray.push();
+		dialogArray.push([graphic,txt]);
 		dialogText.text = txt;
 	}
-	*/
+
 
 }
