@@ -68,7 +68,7 @@ class MenuState extends FlxState {
 
         ammoPickup = new Ammo(12,4);
         add(ammoPickup);
-		cultist = new Cultist(22,11);
+		cultist = new Cultist(22,11,"vertical");
 		add(cultist);
 
 		darkness = new FlxSprite(0,0);
@@ -77,8 +77,8 @@ class MenuState extends FlxState {
       	darkness.blend = nme.display.BlendMode.MULTIPLY;
       	Registry.darkness = darkness;
 
-		//add(light);
-		//add(darkness);
+		add(light);
+		add(darkness);
 		add(dialog);
         add(remainingAmmo);
         add(new FlxBackdrop("assets/scanlines.png", 0, 0, true, true));

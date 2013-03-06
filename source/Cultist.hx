@@ -8,7 +8,7 @@ import org.flixel.FlxPoint;
 
 class Cultist extends Enemy {
 
-	override public function new(X:Int,Y:Int):Void {
+	override public function new(X:Int,Y:Int,wanderD:String):Void {
 
 		super(X,Y);
 		wander = true;
@@ -18,7 +18,6 @@ class Cultist extends Enemy {
 		chaser = true;
 		runSpeed = 45;
 		wanderSpeed = 30;
-		wanderDirection = "horizontal";
 
 		addAnimation("idle", [0,1], 2, true);
 		addAnimation("walk", [0,1], 10, true);
@@ -29,7 +28,14 @@ class Cultist extends Enemy {
 
 		play("idle");
 
-		velocity.x = wanderSpeed;
+		if (wanderD == "horizontal") {
+			velocity.x = wanderSpeed;
+			wanderDirection = "horizontal";
+		}
+		else if (wanderD == "vertical") {
+			velocity.y = -wanderSpeed;
+			wanderDirection = "vertical";
+		}
 
 	}
 

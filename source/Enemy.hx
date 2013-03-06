@@ -48,25 +48,26 @@ class Enemy extends FlxSprite {
 
 		if (wander == true && !sightedPlayer) {
 
-			FlxG.log("Yes Wander");
 			if (wanderDirection == "horizontal") {
 				if (justTouched(FlxObject.LEFT)) {
 					facing = FlxObject.RIGHT;
 					velocity.x = wanderSpeed;
-					FlxG.log("Hit 1");
 				}
 				else if (justTouched(FlxObject.RIGHT)) {
 					facing = FlxObject.LEFT;
 					velocity.x = -wanderSpeed;
-					FlxG.log("Hit 2");
 				}
 			}
 			else if (wanderDirection == "vertical") {
-				// do the opposite
+				if (justTouched(FlxObject.UP)) {
+					facing = FlxObject.DOWN;
+					velocity.y = wanderSpeed;
+				}
+				else if (justTouched(FlxObject.DOWN)) {
+					facing = FlxObject.UP;
+					velocity.y = -wanderSpeed;
+				}
 			}
-		}
-		else {
-			FlxG.log("No Wander");
 		}
 
 		super.update();
