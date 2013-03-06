@@ -12,6 +12,8 @@ class Enemy extends FlxSprite {
 	public var enemyPath:FlxPath;
 	public var pathStart:FlxPoint;
 	public var pathEnd:FlxPoint;
+	public var chaser:Bool = false;
+	public var sightedPlayer:Bool = false;
 
 	override public function new(X:Int,Y:Int) {
 
@@ -24,24 +26,19 @@ class Enemy extends FlxSprite {
 
 		super.update();
 
-		pathStart = new FlxPoint(this.x + this.width / 2, this.y + this.height / 2);
-		pathEnd = new FlxPoint(Registry.player.x + Registry.player.width / 2, Registry.player.y + Registry.player.height / 2);
-		enemyPath = Registry.level.findPath(pathStart,pathEnd);
+		if (chaser) {
 
+			pathStart = new FlxPoint(this.x + this.width / 2, this.y + this.height / 2);
+			pathEnd = new FlxPoint(Registry.player.x + Registry.player.width / 2, Registry.player.y + Registry.player.height / 2);
+			enemyPath = Registry.level.findPath(pathStart,pathEnd);
 
-		if (this.pathSpeed == 0) {
-			this.velocity.x = 0;
-			this.velocity.y = 0;
-		}
+			if (Registry.level.ray(pathStart,pathEnd) && !sightedPlayer) {
+				sightedPlayer = true;
+			}
 
-
-		if (Registry.level.ray(pathStart,pathEnd)) {
-			if (enemyPath != null && pathSpeed == 0) {
+			if (enemyPath != null && pathSpeed == 0 && sightedPlayer) {
 				this.followPath(enemyPath,this.runSpeed);
 			}
-		}
-		else {
-			this.stopFollowingPath(true);
 		}
 
 	}

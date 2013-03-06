@@ -26,7 +26,7 @@ class MenuState extends FlxState {
 	public var player:Player;
 	public var level:FlxTilemap;
 	public var enemies:FlxGroup;
-	public var enemy:Enemy;
+	public var cultist:Cultist;
 	public var enemyPath:FlxPath;
 	public var pistol:FlxWeapon;
 	public var remainingAmmo:FlxText;
@@ -68,8 +68,8 @@ class MenuState extends FlxState {
 
         ammoPickup = new Ammo(12,4);
         add(ammoPickup);
-		enemy = new Enemy(22,11);
-		add(enemy);
+		cultist = new Cultist(22,11);
+		add(cultist);
 
 		darkness = new FlxSprite(0,0);
 		darkness.makeGraphic(FlxG.width,FlxG.height,0xff000000);
@@ -82,7 +82,7 @@ class MenuState extends FlxState {
 		add(dialog);
         add(remainingAmmo);
         add(new FlxBackdrop("assets/scanlines.png", 0, 0, true, true));
-        //add(new FlxBackdrop("assets/vignette.png", 0, 0, false, false));
+        add(new FlxBackdrop("assets/vignette.png", 0, 0, false, false));
  	}
 
 	override public function destroy():Void {
@@ -93,9 +93,9 @@ class MenuState extends FlxState {
 		if (!dialog.exists) {
 			super.update();
 			FlxG.collide(player,level);
-			FlxG.collide(enemy,level);
+			FlxG.collide(cultist,level);
 			FlxG.collide(pistol.group,level,bulletHitLevel);
-			FlxG.collide(pistol.group, enemy,bulletHitEnemy);
+			FlxG.collide(pistol.group, cultist,bulletHitEnemy);
 			FlxG.collide(player,ammoPickup,getAmmo);
 
 			remainingAmmo.text = Std.string(Registry.player.pistolAmmo);
