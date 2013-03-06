@@ -36,14 +36,15 @@ class MenuState extends FlxState {
 	public var light:Light;
 
 	override public function create():Void {
-		FlxG.bgColor = 0xffa8ba4a;
+		FlxG.bgColor = 0xff000000;
 		FlxG.mouse.hide();
 		level = new FlxTilemap();
-		level.loadMap(FlxTilemap.arrayToCSV(createLevel(), 40), "assets/tiles.png", 16, 16, FlxTilemap.AUTO);
+		//level.loadMap(FlxTilemap.arrayToCSV(createLevel(), 40), "assets/tiles.png", 16, 16, FlxTilemap.AUTO);
+		level.loadMap(Assets.getText("assets/mapCSV_level_map.csv"), "assets/tiles.png", 16, 16, FlxTilemap.AUTO);
 		add(level);
 		Registry.level = level;
 
-		player = new Player(3,3);
+		player = new Player(2,3);
 		add(player);
 		Registry.player = player;
 
@@ -54,21 +55,20 @@ class MenuState extends FlxState {
 		dialog.exists = false;
 
         remainingAmmo = new FlxText(10,10,200,"6");
-        remainingAmmo.color = 0xff213625;
+        remainingAmmo.color = 0xffa7b741;
         remainingAmmo.size = 32;
-        remainingAmmo.shadow = 0xff000000;
 
 		pistol = new FlxWeapon("pistol",player,"x","y");
-		pistol.makePixelBullet(10,5,5,0xff224330);
+		pistol.makePixelBullet(10,5,5,0xffa7b741);
 		pistol.setFireRate(1000);
 		pistol.setBulletSpeed(250);
 		pistol.setParent(player,"x","y",8,8,true);
 		add(pistol.group);
 		Registry.pistol = pistol;
 
-        ammoPickup = new Ammo(10,10);
+        ammoPickup = new Ammo(12,4);
         add(ammoPickup);
-		enemy = new Enemy(35,28);
+		enemy = new Enemy(22,11);
 		add(enemy);
 
 		darkness = new FlxSprite(0,0);
@@ -78,12 +78,11 @@ class MenuState extends FlxState {
       	Registry.darkness = darkness;
 
 		add(light);
-        add(remainingAmmo);
-		add(dialog);
-        add(new FlxBackdrop("assets/scanlines.png", 0, 0, true, true));
 		add(darkness);
+		add(dialog);
+        add(remainingAmmo);
+        add(new FlxBackdrop("assets/scanlines.png", 0, 0, true, true));
         add(new FlxBackdrop("assets/vignette.png", 0, 0, false, false));
-
  	}
 
 	override public function destroy():Void {

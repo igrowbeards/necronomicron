@@ -13,15 +13,15 @@ class Light extends FlxSprite {
 		super(X,Y);
 		loadGraphic("assets/glow-light.png");
 		//makeGraphic(50,50,0x00ffffff);
-		this.blend = nme.display.BlendMode.SHADER;
+		this.blend = nme.display.BlendMode.SCREEN;
 		//darkness = Registry.darkness;
 	}
 
 
 	override public function update():Void {
 		super.update();
-		drawX = Std.int(Registry.player.x -124);
-		drawY = Std.int(Registry.player.y -124);
+		drawX = Std.int(Registry.player.x - ((width / 2) - 8));
+		drawY = Std.int(Registry.player.y - ((width / 2) -8));
 	}
 
 	override public function draw():Void {

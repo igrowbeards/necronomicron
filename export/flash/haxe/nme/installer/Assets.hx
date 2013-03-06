@@ -119,12 +119,16 @@ class Assets {
 			resourceTypes.set ("assets/glow-light.png", "image");
 			resourceClasses.set ("assets/HaxeFlixel.svg", NME_assets_haxeflixel_svg);
 			resourceTypes.set ("assets/HaxeFlixel.svg", "text");
+			resourceClasses.set ("assets/mapCSV_level_map.csv", NME_assets_mapcsv_level_map_csv);
+			resourceTypes.set ("assets/mapCSV_level_map.csv", "text");
 			resourceClasses.set ("assets/player.png", NME_assets_player_png);
 			resourceTypes.set ("assets/player.png", "image");
 			resourceClasses.set ("assets/player_dialog.png", NME_assets_player_dialog_png);
 			resourceTypes.set ("assets/player_dialog.png", "image");
 			resourceClasses.set ("assets/scanlines.png", NME_assets_scanlines_png);
 			resourceTypes.set ("assets/scanlines.png", "image");
+			resourceClasses.set ("assets/tile_placehlder.png", NME_assets_tile_placehlder_png);
+			resourceTypes.set ("assets/tile_placehlder.png", "image");
 			resourceClasses.set ("assets/tiles.png", NME_assets_tiles_png);
 			resourceTypes.set ("assets/tiles.png", "image");
 			resourceClasses.set ("assets/vignette.png", NME_assets_vignette_png);

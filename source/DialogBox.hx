@@ -23,12 +23,12 @@ class DialogBox extends FlxGroup {
 		portrait = new FlxSprite(50,34,"assets/player_dialog.png");
 
 		bg = new FlxSprite(48,32);
-		bg.makeGraphic(544,144,0xff224330);
+		bg.makeGraphic(544,144,0xffa7b741);
 		add(bg);
 		add(portrait);
 
 		text = new FlxText(208,48,368,textArray[currentText]);
-        text.color = 0xffa8ba4a;
+        text.color = 0xff000000;
         text.size = 18;
 		add(text);
 	}
