@@ -8,7 +8,7 @@ import org.flixel.FlxText;
 class DialogBox extends FlxGroup {
 
 	public var bg:FlxSprite;
-	public var text:FlxText;
+	public var dialogText:FlxText;
 	public var textArray:Array<String>;
 	public var showing:Bool;
 	public var currentText:Int;
@@ -27,17 +27,17 @@ class DialogBox extends FlxGroup {
 		add(bg);
 		add(portrait);
 
-		text = new FlxText(208,48,368,textArray[currentText]);
-        text.color = 0xff000000;
-        text.size = 18;
-		add(text);
+		dialogText = new FlxText(208,48,368,textArray[currentText]);
+        dialogText.color = 0xff000000;
+        dialogText.size = 14;
+		add(dialogText);
 	}
 
 	public function update_text():Void {
 		if (FlxG.keys.justPressed("X")) {
 			currentText++;
 			if (currentText < textArray.length) {
-				text.text = textArray[currentText];
+				dialogText.text = textArray[currentText];
 			}
 			else {
 				exists = false;
@@ -45,9 +45,12 @@ class DialogBox extends FlxGroup {
 		}
 	}
 
-	public function quickUpdate(graphic:String):Void {
+	public function quickUpdate(graphic:String,txt:String):Void {
 		portrait.loadGraphic(graphic);
 		this.exists = true;
+		textArray = [];
+		textArray.push(txt);
+		dialogText.text = txt;
 	}
 
 }
