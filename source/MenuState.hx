@@ -82,7 +82,7 @@ class MenuState extends FlxState {
 		add(dialog);
         add(remainingAmmo);
         add(new FlxBackdrop("assets/scanlines.png", 0, 0, true, true));
-        add(new FlxBackdrop("assets/vignette.png", 0, 0, false, false));
+        //add(new FlxBackdrop("assets/vignette.png", 0, 0, false, false));
  	}
 
 	override public function destroy():Void {
