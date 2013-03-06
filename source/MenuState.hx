@@ -35,6 +35,7 @@ class MenuState extends FlxState {
 	public var darkness:FlxSprite;
 	public var light:Light;
 	public var deadGuard:DeadGuard;
+	public var ammoGauge:AmmoGauge;
 
 	override public function create():Void {
 		FlxG.bgColor = 0xff000000;
@@ -55,9 +56,13 @@ class MenuState extends FlxState {
 		dialog.exists = false;
 		Registry.dialog = dialog;
 
-        remainingAmmo = new FlxText(10,10,200,"6");
-        remainingAmmo.color = 0xffa7b741;
-        remainingAmmo.size = 32;
+        //remainingAmmo = new FlxText(10,10,200,"6");
+        //remainingAmmo.color = 0xffa7b741;
+        //remainingAmmo.size = 32;
+
+        ammoGauge = new AmmoGauge(5,5);
+        Registry.ammoGauge = ammoGauge;
+        ammoGauge.exists = false;
 
 		pistol = new FlxWeapon("pistol",player,"x","y");
 		pistol.makePixelBullet(10,5,5,0xffa7b741);
@@ -84,9 +89,10 @@ class MenuState extends FlxState {
 		add(light);
 		add(darkness);
 		add(dialog);
-        add(remainingAmmo);
+        //add(remainingAmmo);
+        add(ammoGauge);
         add(new FlxBackdrop("assets/scanlines.png", 0, 0, true, true));
-        add(new FlxBackdrop("assets/vignette.png", 0, 0, false, false));
+        //add(new FlxBackdrop("assets/vignette.png", 0, 0, false, false));
  	}
 
 	override public function destroy():Void {
@@ -103,7 +109,7 @@ class MenuState extends FlxState {
 			FlxG.collide(pistol.group, cultist,bulletHitEnemy);
 			FlxG.collide(player,ammoPickup,getAmmo);
 
-			remainingAmmo.text = Std.string(Registry.player.pistolAmmo);
+			//remainingAmmo.text = Std.string(Registry.player.pistolAmmo);
 
 		}
 		else {
@@ -137,6 +143,8 @@ class MenuState extends FlxState {
 		Registry.dialog.longUpdate(Registry.conversation_1);
 		Registry.player.pistolAmmo = 6;
 		Registry.player.hasPistol = true;
+		ammoGauge.exists = true;
+		dg.allowCollisions = FlxObject.NONE;
 	}
 
 	public function createLevel() {

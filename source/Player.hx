@@ -93,6 +93,7 @@ class Player extends FlxSprite
 		if (FlxG.keys.justPressed("Z") && Registry.player.pistolAmmo > 0 && hasPistol) {
 			if (Registry.pistol.fire()) {
 				Registry.player.pistolAmmo--;
+				Registry.ammoGauge.changeAnim();
 			}
 		}
 

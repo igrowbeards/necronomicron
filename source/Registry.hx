@@ -12,6 +12,7 @@ class Registry
     public static var pistol:FlxWeapon;
     public static var darkness:FlxSprite;
     public static var dialog:DialogBox;
+    public static var ammoGauge:AmmoGauge;
 
     public static var conversation_1:Array<Array<String>>  = [
 		["assets/player_dialog.png","Oh my gosh it's a dead guard!"],
