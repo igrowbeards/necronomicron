@@ -117,6 +117,10 @@ class Assets {
 			resourceTypes.set ("assets/data/vcr/stop.png", "image");
 			resourceClasses.set ("assets/data/vis/bounds.png", NME_assets_data_vis_bounds_png);
 			resourceTypes.set ("assets/data/vis/bounds.png", "image");
+			resourceClasses.set ("assets/dead_guy.png", NME_assets_dead_guy_png);
+			resourceTypes.set ("assets/dead_guy.png", "image");
+			resourceClasses.set ("assets/dialog_gun.png", NME_assets_dialog_gun_png);
+			resourceTypes.set ("assets/dialog_gun.png", "image");
 			resourceClasses.set ("assets/glow-light.png", NME_assets_glow_light_png);
 			resourceTypes.set ("assets/glow-light.png", "image");
 			resourceClasses.set ("assets/HaxeFlixel.svg", NME_assets_haxeflixel_svg);

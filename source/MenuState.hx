@@ -34,6 +34,7 @@ class MenuState extends FlxState {
 	public var dialog:DialogBox;
 	public var darkness:FlxSprite;
 	public var light:Light;
+	public var deadGuard:DeadGuard;
 
 	override public function create():Void {
 		FlxG.bgColor = 0xff000000;
@@ -70,6 +71,9 @@ class MenuState extends FlxState {
         add(ammoPickup);
 		cultist = new Cultist(22,11,"vertical");
 		add(cultist);
+
+		deadGuard = new DeadGuard(7,28);
+		add(deadGuard);
 
 		darkness = new FlxSprite(0,0);
 		darkness.makeGraphic(FlxG.width,FlxG.height,0xff000000);
