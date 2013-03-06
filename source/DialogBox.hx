@@ -39,6 +39,7 @@ class DialogBox extends FlxGroup {
 		if (FlxG.keys.justPressed("X")) {
 			currentText++;
 			if (currentText < dialogArray.length) {
+				portrait.loadGraphic(dialogArray[currentText][0]);
 				dialogText.text = dialogArray[currentText][1];
 			}
 			else {
@@ -47,14 +48,22 @@ class DialogBox extends FlxGroup {
 		}
 	}
 
+	public function longUpdate(conversation:Array<Array<String>>):Void {
+		currentText = 0;
+		dialogArray = conversation;
+		portrait.loadGraphic(dialogArray[currentText][0]);
+		dialogText.text = dialogArray[currentText][1];
+		this.exists = true;
+	}
+
 
 	public function quickUpdate(graphic:String,txt:String):Void {
+		currentText = 0;
 		portrait.loadGraphic(graphic);
 		this.exists = true;
 		dialogArray = [];
 		dialogArray.push([graphic,txt]);
 		dialogText.text = txt;
 	}
-
 
 }
