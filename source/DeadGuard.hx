@@ -1,6 +1,7 @@
 package;
 
 import org.flixel.FlxSprite;
+import org.flixel.FlxObject;
 
 class DeadGuard extends FlxSprite {
 
@@ -8,7 +9,7 @@ class DeadGuard extends FlxSprite {
 
 		super(X * 16, Y * 16);
 		loadGraphic("assets/dead_guy.png");
-
+		this.moves = false;
 	}
 
 }

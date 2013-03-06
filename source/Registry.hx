@@ -11,4 +11,5 @@ class Registry
     public static var level:FlxTilemap;
     public static var pistol:FlxWeapon;
     public static var darkness:FlxSprite;
+    public static var dialog:DialogBox;
 }

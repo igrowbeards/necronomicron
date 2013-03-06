@@ -54,6 +54,7 @@ class MenuState extends FlxState {
 
 		dialog = new DialogBox();
 		dialog.exists = false;
+		Registry.dialog = dialog;
 
         remainingAmmo = new FlxText(10,10,200,"6");
         remainingAmmo.color = 0xffa7b741;
@@ -72,7 +73,7 @@ class MenuState extends FlxState {
 		cultist = new Cultist(22,11,"vertical");
 		add(cultist);
 
-		deadGuard = new DeadGuard(7,28);
+		deadGuard = new DeadGuard(7,8);
 		add(deadGuard);
 
 		darkness = new FlxSprite(0,0);
@@ -97,6 +98,7 @@ class MenuState extends FlxState {
 		if (!dialog.exists) {
 			super.update();
 			FlxG.collide(player,level);
+			FlxG.collide(player,deadGuard,getGun);
 			FlxG.collide(cultist,level);
 			FlxG.collide(pistol.group,level,bulletHitLevel);
 			FlxG.collide(pistol.group, cultist,bulletHitEnemy);
@@ -130,7 +132,10 @@ class MenuState extends FlxState {
 		if (Registry.player.pistolAmmo <= 5) {
 			Registry.player.pistolAmmo++;
 		}
-		dialog.exists = true;
+	}
+
+	public function getGun(p:FlxObject,dg:FlxObject):Void {
+		Registry.dialog.quickUpdate("assets/dialog_gun.png");
 	}
 
 	public function createLevel() {

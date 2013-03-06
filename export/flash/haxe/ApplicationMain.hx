@@ -102,6 +102,11 @@ class ApplicationMain {
             return Assets.getSound ("Beep");
          
 		
+		if (inName=="assets/ammo_gauge.png")
+			 
+            return Assets.getBitmapData ("assets/ammo_gauge.png");
+         
+		
 		if (inName=="assets/ammo_pickup.png")
 			 
             return Assets.getBitmapData ("assets/ammo_pickup.png");
@@ -362,6 +367,7 @@ class ApplicationMain {
 }
 
 class NME_assets_data_beep_mp3 extends nme.media.Sound { }
+class NME_assets_ammo_gauge_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_ammo_pickup_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_cultist_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_data_autotiles_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
