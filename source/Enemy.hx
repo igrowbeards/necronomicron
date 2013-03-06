@@ -29,7 +29,7 @@ class Enemy extends FlxSprite {
 	override public function update():Void {
 
 
-		/*
+
 		if (chaser) {
 
 			pathStart = new FlxPoint(this.x + this.width / 2, this.y + this.height / 2);
@@ -44,9 +44,9 @@ class Enemy extends FlxSprite {
 				this.followPath(enemyPath,this.runSpeed);
 			}
 		}
-		*/
 
-		if (wander == true) {
+
+		if (wander == true && !sightedPlayer) {
 
 			FlxG.log("Yes Wander");
 			if (wanderDirection == "horizontal") {
