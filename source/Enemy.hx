@@ -18,6 +18,7 @@ class Enemy extends FlxSprite {
 	public var enemyPath:FlxPath;
 	public var pathStart:FlxPoint;
 	public var pathEnd:FlxPoint;
+	public var exclamtion:Array<Array<String>> = null;
 
 	override public function new(X:Int,Y:Int) {
 
@@ -27,8 +28,6 @@ class Enemy extends FlxSprite {
 	}
 
 	override public function update():Void {
-
-
 
 		if (chaser) {
 

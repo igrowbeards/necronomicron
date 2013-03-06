@@ -135,7 +135,8 @@ class MenuState extends FlxState {
 
 	public function getGun(p:FlxObject,dg:FlxObject):Void {
 		//Registry.dialog.quickUpdate("assets/dialog_gun.png", "You find a gun on the dead guard.");
-		Registry.dialog.longUpdate(Registry.conversation_1);
+		//Registry.dialog.longUpdate(Registry.conversation_1);
+		Registry.dialog.randomDialog(Registry.cultist_exclamations);
 	}
 
 	public function createLevel() {

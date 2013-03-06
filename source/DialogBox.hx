@@ -56,7 +56,6 @@ class DialogBox extends FlxGroup {
 		this.exists = true;
 	}
 
-
 	public function quickUpdate(graphic:String,txt:String):Void {
 		currentText = 0;
 		portrait.loadGraphic(graphic);
@@ -64,6 +63,16 @@ class DialogBox extends FlxGroup {
 		dialogArray = [];
 		dialogArray.push([graphic,txt]);
 		dialogText.text = txt;
+	}
+
+	public function randomDialog(conversation:Array<Array<String>>):Void {
+		currentText = 0;
+		var rand:Int = Std.random(conversation.length);
+		dialogArray = [];
+		dialogArray.push(conversation[rand]);
+		portrait.loadGraphic(dialogArray[0][0]);
+		dialogText.text = dialogArray[0][1];
+		this.exists = true;
 	}
 
 }

@@ -17,4 +17,10 @@ class Registry
 		["assets/player_dialog.png","Oh my gosh it's a dead guard!"],
 		["assets/dialog_gun.png","You find a gun on the dead guard"]
 	];
+
+    public static var cultist_exclamations:Array<Array<String>>  = [
+		["assets/player_dialog.png","What are you doing here infidel?!?"],
+		["assets/dialog_gun.png","Lord Cthulu shall feast on your soul tonight!"],
+		["assets/player_dialog.png","So much randomness! It's chaos!"]
+	];
 }
