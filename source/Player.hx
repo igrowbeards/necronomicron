@@ -13,6 +13,7 @@ class Player extends FlxSprite
 
 	public var pistol:FlxWeapon;
 	public var pistolAmmo:Int;
+	public var hasPistol:Bool = false;
 
 	override public function new(X:Int,Y:Int) {
 
@@ -35,7 +36,7 @@ class Player extends FlxSprite
 		height = 14;
 		offset.y = 1;
 
-		pistolAmmo = 6;
+		pistolAmmo = 0;
 
 		if (FlxG.getPlugin(FlxControl) == null) {
 			FlxG.addPlugin(new FlxControl());
@@ -89,7 +90,7 @@ class Player extends FlxSprite
 			play("walk_down");
 		}
 
-		if (FlxG.keys.justPressed("Z") && Registry.player.pistolAmmo > 0) {
+		if (FlxG.keys.justPressed("Z") && Registry.player.pistolAmmo > 0 && hasPistol) {
 			if (Registry.pistol.fire()) {
 				Registry.player.pistolAmmo--;
 			}

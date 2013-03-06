@@ -61,7 +61,7 @@ class MenuState extends FlxState {
 
 		pistol = new FlxWeapon("pistol",player,"x","y");
 		pistol.makePixelBullet(10,5,5,0xffa7b741);
-		pistol.setFireRate(1000);
+		pistol.setFireRate(500);
 		pistol.setBulletSpeed(250);
 		pistol.setParent(player,"x","y",8,8,true);
 		add(pistol.group);
@@ -134,9 +134,9 @@ class MenuState extends FlxState {
 	}
 
 	public function getGun(p:FlxObject,dg:FlxObject):Void {
-		//Registry.dialog.quickUpdate("assets/dialog_gun.png", "You find a gun on the dead guard.");
-		//Registry.dialog.longUpdate(Registry.conversation_1);
-		Registry.dialog.randomDialog(Registry.cultist_exclamations);
+		Registry.dialog.longUpdate(Registry.conversation_1);
+		Registry.player.pistolAmmo = 6;
+		Registry.player.hasPistol = true;
 	}
 
 	public function createLevel() {
