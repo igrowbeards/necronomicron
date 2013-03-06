@@ -77,8 +77,8 @@ class MenuState extends FlxState {
       	darkness.blend = nme.display.BlendMode.MULTIPLY;
       	Registry.darkness = darkness;
 
-		add(light);
-		add(darkness);
+		//add(light);
+		//add(darkness);
 		add(dialog);
         add(remainingAmmo);
         add(new FlxBackdrop("assets/scanlines.png", 0, 0, true, true));

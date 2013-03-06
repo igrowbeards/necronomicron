@@ -9,12 +9,16 @@ import org.flixel.FlxPoint;
 class Cultist extends Enemy {
 
 	override public function new(X:Int,Y:Int):Void {
+
 		super(X,Y);
+		wander = true;
 
 		loadGraphic("assets/cultist.png",true,true,16,16,true);
 
-		runSpeed = 45;
 		chaser = true;
+		runSpeed = 45;
+		wanderSpeed = 30;
+		wanderDirection = "horizontal";
 
 		addAnimation("idle", [0,1], 2, true);
 		addAnimation("walk", [0,1], 10, true);
@@ -24,13 +28,14 @@ class Cultist extends Enemy {
 		addAnimation("walk_up", [4,5], 10, true);
 
 		play("idle");
+
+		velocity.x = wanderSpeed;
+
 	}
 
 	override public function update():Void {
 
 		super.update();
-
-		FlxG.log(velocity.x + ", " + velocity.y);
 
 		// Walk left and right
 		if (velocity.x > 0 && velocity.y >= 0) {
