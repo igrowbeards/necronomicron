@@ -30,6 +30,7 @@ class Level1 extends LevelTemplate {
 		level.loadMap(Assets.getText("assets/mapCSV_level_map.csv"), "assets/tiles.png", 16, 16, FlxTilemap.AUTO);
 		addCultists();
 		addEnemies();
+		placeExit(39,8);
  	}
 
 	override public function destroy():Void {

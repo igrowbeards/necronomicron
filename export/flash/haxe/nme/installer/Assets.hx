@@ -125,6 +125,10 @@ class Assets {
 			resourceTypes.set ("assets/dead_guy.png", "image");
 			resourceClasses.set ("assets/dialog_gun.png", NME_assets_dialog_gun_png);
 			resourceTypes.set ("assets/dialog_gun.png", "image");
+			resourceClasses.set ("assets/gate-h.png", NME_assets_gate_h_png);
+			resourceTypes.set ("assets/gate-h.png", "image");
+			resourceClasses.set ("assets/gate.png", NME_assets_gate_png);
+			resourceTypes.set ("assets/gate.png", "image");
 			resourceClasses.set ("assets/glow-light.png", NME_assets_glow_light_png);
 			resourceTypes.set ("assets/glow-light.png", "image");
 			resourceClasses.set ("assets/HaxeFlixel.svg", NME_assets_haxeflixel_svg);

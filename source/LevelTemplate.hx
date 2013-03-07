@@ -40,6 +40,7 @@ class LevelTemplate extends FlxState {
 	public var computer:Computer;
 	public var playerStartX:Int;
 	public var playerStartY:Int;
+	public var exit:Exit;
 
 	override public function create():Void {
 		FlxG.bgColor = 0xff000000;
@@ -112,6 +113,7 @@ class LevelTemplate extends FlxState {
 		if (!dialog.exists) {
 			super.update();
 			FlxG.collide(player,level);
+			FlxG.collide(player,exit);
 			FlxG.collide(player,deadGuard,getGun);
 			FlxG.collide(enemies,level);
 			FlxG.collide(pistol.group,level,bulletHitLevel);
@@ -170,6 +172,7 @@ class LevelTemplate extends FlxState {
 		Registry.player.hasPistol = true;
 		ammoGauge.exists = true;
 		dg.allowCollisions = FlxObject.NONE;
+		Registry.exit.openGate();
 	}
 
 	public function addCultists() {
@@ -202,6 +205,12 @@ class LevelTemplate extends FlxState {
 			i++;
 		}
 		return levelArray;
+	}
+
+	public function placeExit(X:Int,Y:Int) {
+		exit = new Exit(X,Y);
+		Registry.exit = exit;
+		add(exit);
 	}
 
 }

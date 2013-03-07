@@ -307,6 +307,16 @@ class ApplicationMain {
             return Assets.getBitmapData ("assets/dialog_gun.png");
          
 		
+		if (inName=="assets/gate-h.png")
+			 
+            return Assets.getBitmapData ("assets/gate-h.png");
+         
+		
+		if (inName=="assets/gate.png")
+			 
+            return Assets.getBitmapData ("assets/gate.png");
+         
+		
 		if (inName=="assets/glow-light.png")
 			 
             return Assets.getBitmapData ("assets/glow-light.png");
@@ -418,6 +428,8 @@ class NME_assets_data_vcr_stop_png extends nme.display.BitmapData { public funct
 class NME_assets_data_vis_bounds_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_dead_guy_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_dialog_gun_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_gate_h_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_gate_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_glow_light_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_haxeflixel_svg extends nme.utils.ByteArray { }
 class NME_assets_mapcsv_level_map_csv extends nme.utils.ByteArray { }
