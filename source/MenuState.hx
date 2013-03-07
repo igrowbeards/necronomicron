@@ -54,9 +54,9 @@ class MenuState extends FlxState {
 
 		light = new Light(30,30);
 
-		computer = new Computer(37,10);
+		computer = new Computer(35,21);
 		add(computer);
-		staticLight = new StaticLight(37,10);
+		staticLight = new StaticLight(35,21);
 
 		dialog = new DialogBox();
 		dialog.exists = false;
@@ -118,6 +118,10 @@ class MenuState extends FlxState {
 
 			//remainingAmmo.text = Std.string(Registry.player.pistolAmmo);
 
+			if (player.x > FlxG.width) {
+				fadeOutLevel();
+			}
+
 		}
 		else {
 			dialog.update_text();
@@ -144,6 +148,18 @@ class MenuState extends FlxState {
 		if (Registry.player.pistolAmmo <= 5) {
 			Registry.player.pistolAmmo++;
 		}
+	}
+
+	public function fadeOutLevel():Void
+	{
+		FlxG.fade(0xff000000,1,changeLevel);
+	}
+
+	public function changeLevel():Void
+	{
+        //FlxG.switchState(new WinState());
+		FlxG.resetState();
+		Registry.player.resetController();
 	}
 
 	public function getGun(p:FlxObject,dg:FlxObject):Void {
