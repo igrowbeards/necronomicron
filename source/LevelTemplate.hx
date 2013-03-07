@@ -25,6 +25,7 @@ class LevelTemplate extends FlxState {
 
 	public var player:Player;
 	public var level:FlxTilemap;
+	public var cultists:FlxGroup;
 	public var enemies:FlxGroup;
 	public var enemyPath:FlxPath;
 	public var pistol:FlxWeapon;
@@ -52,6 +53,8 @@ class LevelTemplate extends FlxState {
 		add(player);
 		Registry.player = player;
 
+		FlxG.log(FlxG.level);
+
 		light = new Light(playerStartX,playerStartY);
 
 		computer = new Computer(35,21);
@@ -77,9 +80,9 @@ class LevelTemplate extends FlxState {
         ammoPickup = new Ammo(12,4);
         add(ammoPickup);
 
+        cultists = new FlxGroup();
+
         enemies = new FlxGroup();
-        enemies.add(new Cultist(16,26,"vertical"));
-        enemies.add(new Cultist(19,13,"horizontal"));
         add(enemies);
 
 		deadGuard = new DeadGuard(7,8);
@@ -154,9 +157,10 @@ class LevelTemplate extends FlxState {
 
 	public function changeLevel():Void
 	{
-        //FlxG.switchState(new WinState());
-		FlxG.resetState();
+        FlxG.switchState(new Level1());
+		//FlxG.resetState();
 		Registry.player.resetController();
+		FlxG.level ++;
 	}
 
 	public function getGun(p:FlxObject,dg:FlxObject):Void {
@@ -165,6 +169,23 @@ class LevelTemplate extends FlxState {
 		Registry.player.hasPistol = true;
 		ammoGauge.exists = true;
 		dg.allowCollisions = FlxObject.NONE;
+	}
+
+	public function addCultists() {
+
+		for (ty in 0...level.heightInTiles) {
+			for (tx in 0...level.widthInTiles) {
+				if (level.getTile(tx,ty) == 0) {
+					if (cultists.countLiving() < (FlxG.level + 1) * 2 && FlxMath.rand(1,100) == 1) {
+						cultists.add(new Cultist(tx,ty,"horizontal"));
+					}
+				}
+			}
+		}
+	}
+
+	public function addEnemies() {
+		enemies.add(cultists);
 	}
 
 	public function createLevel() {

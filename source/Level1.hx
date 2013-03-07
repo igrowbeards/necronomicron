@@ -24,10 +24,12 @@ import addons.FlxBackdrop;
 class Level1 extends LevelTemplate {
 
 	override public function create():Void {
-		playerStartX = 6;
-		playerStartY = 26;
+		playerStartX = 36;
+		playerStartY = 9;
 		super.create();
 		level.loadMap(Assets.getText("assets/mapCSV_level_map.csv"), "assets/tiles.png", 16, 16, FlxTilemap.AUTO);
+		addCultists();
+		addEnemies();
  	}
 
 	override public function destroy():Void {
