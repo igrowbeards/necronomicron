@@ -15,6 +15,7 @@ class Registry
     public static var dialog:DialogBox;
     public static var ammoGauge:AmmoGauge;
     public static var enemies:FlxGroup;
+    public static var computers:FlxGroup;
     public static var exit:Exit;
 
     public static var conversation_1:Array<Array<String>>  = [

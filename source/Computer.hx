@@ -9,7 +9,7 @@ class Computer extends FlxSprite {
 
 		super(X * 16, Y * 16);
 		loadGraphic("assets/computer.png");
-		this.moves = false;
+		immovable = true;
 
 		loadGraphic("assets/computer.png",true,true,16,16,true);
 
@@ -21,10 +21,11 @@ class Computer extends FlxSprite {
 	}
 
 	public function hack():Void {
-
+		play("hacked");
 	}
 
 	public function blowUp():Void {
 
 	}
+
 }

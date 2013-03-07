@@ -61,6 +61,7 @@ class LevelTemplate extends FlxState {
 		staticLight = new StaticLight(35,21);
 
 		computers = new FlxGroup();
+		Registry.computers = computers;
 		add(computers);
 		dialog = new DialogBox();
 		dialog.exists = false;
@@ -120,6 +121,7 @@ class LevelTemplate extends FlxState {
 			FlxG.collide(pistol.group,level,bulletHitLevel);
 			FlxG.collide(pistol.group, enemies,bulletHitEnemy);
 			FlxG.collide(player,ammoPickup,getAmmo);
+			FlxG.collide(player,computers,hackComputer);
 
 			if (player.x > FlxG.width) {
 				fadeOutLevel();
@@ -144,6 +146,12 @@ class LevelTemplate extends FlxState {
 
 	public function bulletHitLevel(b:FlxObject,l:FlxObject) {
 		b.exists = false;
+	}
+
+	public function hackComputer(pRef:FlxObject,cRef:FlxObject) {
+		var c:Computer = cast(cRef,Computer);
+		FlxG.log("hackComputer called");
+		c.hack();
 	}
 
 	public function getAmmo(p:FlxObject,a:FlxObject) {
