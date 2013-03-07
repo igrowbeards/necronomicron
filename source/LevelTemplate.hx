@@ -37,7 +37,7 @@ class LevelTemplate extends FlxState {
 	public var staticLight:StaticLight;
 	public var deadGuard:DeadGuard;
 	public var ammoGauge:AmmoGauge;
-	public var computer:Computer;
+	public var computers:FlxGroup;
 	public var playerStartX:Int;
 	public var playerStartY:Int;
 	public var exit:Exit;
@@ -58,10 +58,10 @@ class LevelTemplate extends FlxState {
 
 		light = new Light(playerStartX,playerStartY);
 
-		computer = new Computer(35,21);
-		add(computer);
 		staticLight = new StaticLight(35,21);
 
+		computers = new FlxGroup();
+		add(computers);
 		dialog = new DialogBox();
 		dialog.exists = false;
 		Registry.dialog = dialog;
@@ -103,6 +103,7 @@ class LevelTemplate extends FlxState {
         add(ammoGauge);
         add(new FlxBackdrop("assets/scanlines.png", 0, 0, true, true));
         //add(new FlxBackdrop("assets/vignette.png", 0, 0, false, false));
+
  	}
 
 	override public function destroy():Void {
@@ -212,5 +213,10 @@ class LevelTemplate extends FlxState {
 		Registry.exit = exit;
 		add(exit);
 	}
+
+	public function addComputers() {
+		computers.add(new Computer(35,21));
+	}
+
 
 }
