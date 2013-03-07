@@ -26,7 +26,6 @@ class LevelTemplate extends FlxState {
 	public var player:Player;
 	public var level:FlxTilemap;
 	public var enemies:FlxGroup;
-	public var cultist:Cultist;
 	public var enemyPath:FlxPath;
 	public var pistol:FlxWeapon;
 	public var remainingAmmo:FlxText;
@@ -63,10 +62,6 @@ class LevelTemplate extends FlxState {
 		dialog.exists = false;
 		Registry.dialog = dialog;
 
-        //remainingAmmo = new FlxText(10,10,200,"6");
-        //remainingAmmo.color = 0xffa7b741;
-        //remainingAmmo.size = 32;
-
         ammoGauge = new AmmoGauge(5,5);
         Registry.ammoGauge = ammoGauge;
         ammoGauge.exists = false;
@@ -81,8 +76,11 @@ class LevelTemplate extends FlxState {
 
         ammoPickup = new Ammo(12,4);
         add(ammoPickup);
-		cultist = new Cultist(22,11,"vertical");
-		add(cultist);
+
+        enemies = new FlxGroup();
+        enemies.add(new Cultist(16,26,"vertical"));
+        enemies.add(new Cultist(19,13,"horizontal"));
+        add(enemies);
 
 		deadGuard = new DeadGuard(7,8);
 		add(deadGuard);
@@ -95,9 +93,8 @@ class LevelTemplate extends FlxState {
 
 		add(light);
 		add(staticLight);
-		add(darkness);
+		//add(darkness);
 		add(dialog);
-        //add(remainingAmmo);
         add(ammoGauge);
         add(new FlxBackdrop("assets/scanlines.png", 0, 0, true, true));
         //add(new FlxBackdrop("assets/vignette.png", 0, 0, false, false));
@@ -112,12 +109,10 @@ class LevelTemplate extends FlxState {
 			super.update();
 			FlxG.collide(player,level);
 			FlxG.collide(player,deadGuard,getGun);
-			FlxG.collide(cultist,level);
+			FlxG.collide(enemies,level);
 			FlxG.collide(pistol.group,level,bulletHitLevel);
-			FlxG.collide(pistol.group, cultist,bulletHitEnemy);
+			FlxG.collide(pistol.group, enemies,bulletHitEnemy);
 			FlxG.collide(player,ammoPickup,getAmmo);
-
-			//remainingAmmo.text = Std.string(Registry.player.pistolAmmo);
 
 			if (player.x > FlxG.width) {
 				fadeOutLevel();
