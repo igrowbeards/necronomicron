@@ -34,8 +34,10 @@ class MenuState extends FlxState {
 	public var dialog:DialogBox;
 	public var darkness:FlxSprite;
 	public var light:Light;
+	public var staticLight:StaticLight;
 	public var deadGuard:DeadGuard;
 	public var ammoGauge:AmmoGauge;
+	public var computer:Computer;
 
 	override public function create():Void {
 		FlxG.bgColor = 0xff000000;
@@ -51,6 +53,10 @@ class MenuState extends FlxState {
 		Registry.player = player;
 
 		light = new Light(30,30);
+
+		computer = new Computer(37,10);
+		add(computer);
+		staticLight = new StaticLight(37,10);
 
 		dialog = new DialogBox();
 		dialog.exists = false;
@@ -87,6 +93,7 @@ class MenuState extends FlxState {
       	Registry.darkness = darkness;
 
 		add(light);
+		add(staticLight);
 		add(darkness);
 		add(dialog);
         //add(remainingAmmo);

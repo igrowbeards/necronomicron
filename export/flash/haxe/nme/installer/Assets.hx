@@ -47,6 +47,8 @@ class Assets {
 			resourceTypes.set ("assets/ammo_gauge.png", "image");
 			resourceClasses.set ("assets/ammo_pickup.png", NME_assets_ammo_pickup_png);
 			resourceTypes.set ("assets/ammo_pickup.png", "image");
+			resourceClasses.set ("assets/computer.png", NME_assets_computer_png);
+			resourceTypes.set ("assets/computer.png", "image");
 			resourceClasses.set ("assets/cultist.png", NME_assets_cultist_png);
 			resourceTypes.set ("assets/cultist.png", "image");
 			resourceClasses.set ("assets/data/autotiles.png", NME_assets_data_autotiles_png);
@@ -135,6 +137,8 @@ class Assets {
 			resourceTypes.set ("assets/player_dialog.png", "image");
 			resourceClasses.set ("assets/scanlines.png", NME_assets_scanlines_png);
 			resourceTypes.set ("assets/scanlines.png", "image");
+			resourceClasses.set ("assets/small_light.png", NME_assets_small_light_png);
+			resourceTypes.set ("assets/small_light.png", "image");
 			resourceClasses.set ("assets/tile_placehlder.png", NME_assets_tile_placehlder_png);
 			resourceTypes.set ("assets/tile_placehlder.png", "image");
 			resourceClasses.set ("assets/tiles.png", NME_assets_tiles_png);

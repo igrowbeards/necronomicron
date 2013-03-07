@@ -112,6 +112,11 @@ class ApplicationMain {
             return Assets.getBitmapData ("assets/ammo_pickup.png");
          
 		
+		if (inName=="assets/computer.png")
+			 
+            return Assets.getBitmapData ("assets/computer.png");
+         
+		
 		if (inName=="assets/cultist.png")
 			 
             return Assets.getBitmapData ("assets/cultist.png");
@@ -332,6 +337,11 @@ class ApplicationMain {
             return Assets.getBitmapData ("assets/scanlines.png");
          
 		
+		if (inName=="assets/small_light.png")
+			 
+            return Assets.getBitmapData ("assets/small_light.png");
+         
+		
 		if (inName=="assets/tile_placehlder.png")
 			 
             return Assets.getBitmapData ("assets/tile_placehlder.png");
@@ -369,6 +379,7 @@ class ApplicationMain {
 class NME_assets_data_beep_mp3 extends nme.media.Sound { }
 class NME_assets_ammo_gauge_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_ammo_pickup_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_computer_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_cultist_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_data_autotiles_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_data_autotiles_alt_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
@@ -413,6 +424,7 @@ class NME_assets_mapcsv_level_map_csv extends nme.utils.ByteArray { }
 class NME_assets_player_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_player_dialog_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_scanlines_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_small_light_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_tile_placehlder_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_tiles_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_vignette_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
