@@ -1,6 +1,7 @@
 package;
 
 import org.flixel.FlxG;
+import org.flixel.FlxGroup;
 import org.flixel.FlxSprite;
 import org.flixel.FlxTilemap;
 import org.flixel.plugin.photonstorm.FlxWeapon;
@@ -13,6 +14,7 @@ class Registry
     public static var darkness:FlxSprite;
     public static var dialog:DialogBox;
     public static var ammoGauge:AmmoGauge;
+    public static var enemies:FlxGroup;
 
     public static var conversation_1:Array<Array<String>>  = [
 		["assets/player_dialog.png","Oh my gosh it's a dead guard!"],

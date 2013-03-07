@@ -84,6 +84,7 @@ class LevelTemplate extends FlxState {
 
         enemies = new FlxGroup();
         add(enemies);
+        Registry.enemies = enemies;
 
 		deadGuard = new DeadGuard(7,8);
 		add(deadGuard);
@@ -157,7 +158,7 @@ class LevelTemplate extends FlxState {
 
 	public function changeLevel():Void
 	{
-        FlxG.switchState(new Level1());
+        FlxG.switchState(new Level2());
 		//FlxG.resetState();
 		Registry.player.resetController();
 		FlxG.level ++;
