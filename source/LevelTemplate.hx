@@ -104,7 +104,6 @@ class LevelTemplate extends FlxState {
         add(ammoGauge);
         add(new FlxBackdrop("assets/scanlines.png", 0, 0, true, true));
         //add(new FlxBackdrop("assets/vignette.png", 0, 0, false, false));
-
  	}
 
 	override public function destroy():Void {
@@ -131,6 +130,12 @@ class LevelTemplate extends FlxState {
 		else {
 			dialog.update_text();
 		}
+
+		if (Registry.totalComputers == 0) {
+			Registry.exit.openGate();
+		}
+
+		FlxG.log(Registry.totalComputers);
 
 	}
 
@@ -168,7 +173,7 @@ class LevelTemplate extends FlxState {
 
 	public function changeLevel():Void
 	{
-        FlxG.switchState(new Level2());
+        FlxG.switchState(new Level1());
 		//FlxG.resetState();
 		Registry.player.resetController();
 		FlxG.level ++;
@@ -180,7 +185,6 @@ class LevelTemplate extends FlxState {
 		Registry.player.hasPistol = true;
 		ammoGauge.exists = true;
 		dg.allowCollisions = FlxObject.NONE;
-		Registry.exit.openGate();
 	}
 
 	public function addCultists() {
@@ -223,6 +227,9 @@ class LevelTemplate extends FlxState {
 
 	public function addComputers() {
 		computers.add(new Computer(35,21));
+		computers.add(new Computer(1,28));
+		computers.add(new Computer(12,1));
+		Registry.totalComputers = 3;
 	}
 
 

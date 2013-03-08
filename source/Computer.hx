@@ -6,7 +6,7 @@ import org.flixel.FlxG;
 
 class Computer extends FlxSprite {
 
-	public var hackDelay:Float = 10;
+	public var hackDelay:Float = 5;
 	public var hacked:Bool = false;
 
 	override public function new(X:Int,Y:Int):Void {
@@ -14,6 +14,7 @@ class Computer extends FlxSprite {
 		super(X * 16, Y * 16);
 		loadGraphic("assets/computer.png");
 		immovable = true;
+		hackDelay = 10;
 
 		loadGraphic("assets/computer.png",true,true,16,16,true);
 
@@ -26,6 +27,7 @@ class Computer extends FlxSprite {
 
 	public function hack():Void {
 		hacked = true;
+		play("hacked");
 	}
 
 	public function blowUp():Void {
@@ -38,7 +40,8 @@ class Computer extends FlxSprite {
 		}
 		else if (hacked && hackDelay > -1) {
 			hackDelay = -1;
-			play("hacked");
+			play("blown");
+			Registry.totalComputers--;
 		}
 
 	}

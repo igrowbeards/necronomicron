@@ -17,6 +17,7 @@ class Registry
     public static var enemies:FlxGroup;
     public static var computers:FlxGroup;
     public static var exit:Exit;
+    public static var totalComputers:Int;
 
     public static var conversation_1:Array<Array<String>>  = [
 		["assets/player_dialog.png","Oh my gosh it's a dead guard!"],
