@@ -150,7 +150,6 @@ class LevelTemplate extends FlxState {
 
 	public function hackComputer(pRef:FlxObject,cRef:FlxObject) {
 		var c:Computer = cast(cRef,Computer);
-		FlxG.log("hackComputer called");
 		c.hack();
 	}
 

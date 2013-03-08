@@ -2,8 +2,12 @@ package;
 
 import org.flixel.FlxSprite;
 import org.flixel.FlxObject;
+import org.flixel.FlxG;
 
 class Computer extends FlxSprite {
+
+	public var hackDelay:Float = 10;
+	public var hacked:Bool = false;
 
 	override public function new(X:Int,Y:Int):Void {
 
@@ -21,10 +25,21 @@ class Computer extends FlxSprite {
 	}
 
 	public function hack():Void {
-		play("hacked");
+		hacked = true;
 	}
 
 	public function blowUp():Void {
+	}
+
+	override public function update():Void {
+
+		if (hacked && hackDelay > 0) {
+			hackDelay -= FlxG.elapsed;
+		}
+		else if (hacked && hackDelay > -1) {
+			hackDelay = -1;
+			play("hacked");
+		}
 
 	}
 
