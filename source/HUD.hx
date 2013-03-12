@@ -18,6 +18,10 @@ class HUD extends FlxGroup {
 
 		health = new FlxText(48,5,128,"Health: X");
 		sanity = new FlxText(192,5,368,"Sanity: X");
+        health.color = 0xff000000;
+        health.size = 14;
+        sanity.color = 0xff000000;
+        sanity.size = 14;
 
         ammoGauge = new AmmoGauge(5,5);
         Registry.ammoGauge = ammoGauge;
@@ -27,6 +31,12 @@ class HUD extends FlxGroup {
         add(health);
         add(sanity);
 
+	}
+
+	override public function update():Void {
+		super.update();
+		health.text = "Health: " + Registry.player.health;
+		sanity.text = "Sanity: " + Registry.player.sanity;
 	}
 
 }

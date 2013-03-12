@@ -19,7 +19,7 @@ class Player extends FlxSprite
 	override public function new(X:Int,Y:Int) {
 
 		super(X * 16,Y * 16);
-		health = 3;
+		health = 5;
 
 		loadGraphic("assets/player.png",true,true,16,16,true);
 

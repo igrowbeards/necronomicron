@@ -149,6 +149,7 @@ class LevelTemplate extends FlxState {
 	public function bulletHitEnemy(b:FlxObject,e:FlxObject) {
 		b.exists = false;
 		e.exists = false;
+		Registry.player.sanity--;
 	}
 
 	public function bulletHitLevel(b:FlxObject,l:FlxObject) {
