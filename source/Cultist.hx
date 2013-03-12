@@ -19,6 +19,7 @@ class Cultist extends Enemy {
 		runSpeed = 45;
 		wanderSpeed = 30;
 		attackSpeed = 1;
+		attackStrength = 1;
 
 		addAnimation("idle", [0,1], 2, true);
 		addAnimation("walk", [0,1], 10, true);

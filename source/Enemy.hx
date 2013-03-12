@@ -22,12 +22,13 @@ class Enemy extends FlxSprite {
 	public var exclamtion:Array<Array<String>> = null;
 	public var attackSpeed:Float;
 	public var attackStrength:Int;
-	public var attackTimer:Float = 0;
+	public var attackTimer:Float;
 
 	override public function new(X:Int,Y:Int) {
 
 		super(X * 16,Y * 16);
 		makeGraphic(8,8,0xff00ff00);
+		attackTimer = Std.int(attackSpeed);
 
 	}
 
@@ -74,15 +75,15 @@ class Enemy extends FlxSprite {
 		}
 
 		attackTimer += FlxG.elapsed;
+		FlxG.log(attackTimer);
 		super.update();
 
 	}
 
 	public function attack(target:FlxObject) {
 		if (attackTimer > attackSpeed) {
-			Registry.player.hurt(1);
+			Registry.player.hurt(attackStrength);
 			attackTimer = 0;
-			FlxG.log("HIT");
 		}
 	}
 
