@@ -44,6 +44,7 @@ class LevelTemplate extends FlxState {
 
 	override public function create():Void {
 		FlxG.bgColor = 0xff000000;
+		FlxG.camera.antialiasing = false;
 		FlxG.mouse.hide();
 		level = new FlxTilemap();
 		//level.loadMap(FlxTilemap.arrayToCSV(createLevel(), 40), "assets/tiles.png", 16, 16, FlxTilemap.AUTO);

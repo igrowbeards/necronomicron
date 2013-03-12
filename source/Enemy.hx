@@ -13,6 +13,7 @@ class Enemy extends FlxSprite {
 	public var wanderSpeed:Int = 20;
 
 	public var chaser:Bool = false;
+	public var chasing:Bool = false;
 	public var sightedPlayer:Bool = false;
 	public var runSpeed:Int = 30;
 	public var enemyPath:FlxPath;
@@ -37,13 +38,13 @@ class Enemy extends FlxSprite {
 
 			if (Registry.level.ray(pathStart,pathEnd) && !sightedPlayer) {
 				sightedPlayer = true;
+				this.chasing = true;
 			}
 
 			if (enemyPath != null && pathSpeed == 0 && sightedPlayer) {
 				this.followPath(enemyPath,this.runSpeed);
 			}
 		}
-
 
 		if (wander == true && !sightedPlayer) {
 

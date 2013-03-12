@@ -14,6 +14,8 @@ class Player extends FlxSprite
 	public var pistol:FlxWeapon;
 	public var pistolAmmo:Int;
 	public var hasPistol:Bool = false;
+	public var health:Int = 5;
+	public var sanity:Int = 5;
 
 	override public function new(X:Int,Y:Int) {
 
