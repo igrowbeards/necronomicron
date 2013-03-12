@@ -135,6 +135,11 @@ class LevelTemplate extends FlxState {
 			Registry.exit.openGate();
 		}
 
+		if (Registry.player.sanity == 0) {
+			Registry.player.sanity = -1;
+			loseSanity();
+		}
+
 	}
 
 	override public function draw():Void {
@@ -236,5 +241,13 @@ class LevelTemplate extends FlxState {
 		Registry.totalComputers = 3;
 	}
 
+	public function loseSanity() {
+		Registry.cod = "madness";
+		FlxG.fade(0xff000000,1,gameOver);
+	}
+
+	public function gameOver():Void {
+		FlxG.switchState(new EndGame());
+	}
 
 }

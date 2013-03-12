@@ -14,7 +14,7 @@ class Player extends FlxSprite
 	public var pistol:FlxWeapon;
 	public var pistolAmmo:Int;
 	public var hasPistol:Bool = false;
-	public var sanity:Int = 5;
+	public var sanity:Int = 1;
 
 	override public function new(X:Int,Y:Int) {
 
@@ -82,8 +82,15 @@ class Player extends FlxSprite
 				Registry.ammoGauge.changeAnim();
 			}
 		}
+	}
 
+	override public function kill() {
+		FlxG.fade(0xff000000,1,deathChange);
+		Registry.cod = "death";
+	}
 
+	public function deathChange() {
+        FlxG.switchState(new EndGame());
 	}
 
 	public function resetController():Void {
