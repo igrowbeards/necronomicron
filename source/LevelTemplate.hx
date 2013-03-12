@@ -36,7 +36,7 @@ class LevelTemplate extends FlxState {
 	public var light:Light;
 	public var staticLight:StaticLight;
 	public var deadGuard:DeadGuard;
-	public var ammoGauge:AmmoGauge;
+	public var hud:HUD;
 	public var computers:FlxGroup;
 	public var playerStartX:Int;
 	public var playerStartY:Int;
@@ -68,9 +68,6 @@ class LevelTemplate extends FlxState {
 		dialog.exists = false;
 		Registry.dialog = dialog;
 
-        ammoGauge = new AmmoGauge(5,5);
-        Registry.ammoGauge = ammoGauge;
-        ammoGauge.exists = false;
 
 		pistol = new FlxWeapon("pistol",player,"x","y");
 		pistol.makePixelBullet(10,5,5,0xffa7b741);
@@ -84,6 +81,9 @@ class LevelTemplate extends FlxState {
         add(ammoPickup);
 
         cultists = new FlxGroup();
+
+        hud = new HUD();
+        Registry.hud = hud;
 
         enemies = new FlxGroup();
         add(enemies);
@@ -102,7 +102,8 @@ class LevelTemplate extends FlxState {
 		add(staticLight);
 		//add(darkness);
 		add(dialog);
-        add(ammoGauge);
+        //add(ammoGauge);
+        add(hud);
         add(new FlxBackdrop("assets/scanlines.png", 0, 0, true, true));
         //add(new FlxBackdrop("assets/vignette.png", 0, 0, false, false));
  	}
@@ -184,7 +185,7 @@ class LevelTemplate extends FlxState {
 		Registry.dialog.longUpdate(Registry.conversation_1);
 		Registry.player.pistolAmmo = 6;
 		Registry.player.hasPistol = true;
-		ammoGauge.exists = true;
+		Registry.hud.ammoGauge.exists = true;
 		dg.allowCollisions = FlxObject.NONE;
 	}
 
