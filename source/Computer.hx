@@ -26,8 +26,10 @@ class Computer extends FlxSprite {
 	}
 
 	public function hack():Void {
-		hacked = true;
-		play("hacked");
+		if (!hacked) {
+			play("hacked");
+			hacked = true;
+		}
 	}
 
 	public function blowUp():Void {

@@ -20,6 +20,9 @@ class Enemy extends FlxSprite {
 	public var pathStart:FlxPoint;
 	public var pathEnd:FlxPoint;
 	public var exclamtion:Array<Array<String>> = null;
+	public var attackSpeed:Float;
+	public var attackStrength:Int;
+	public var attackTimer:Float = 0;
 
 	override public function new(X:Int,Y:Int) {
 
@@ -70,8 +73,17 @@ class Enemy extends FlxSprite {
 			}
 		}
 
+		attackTimer += FlxG.elapsed;
 		super.update();
 
+	}
+
+	public function attack(target:FlxObject) {
+		if (attackTimer > attackSpeed) {
+			Registry.player.hurt(1);
+			attackTimer = 0;
+			FlxG.log("HIT");
+		}
 	}
 
 }

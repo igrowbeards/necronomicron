@@ -18,6 +18,7 @@ class Cultist extends Enemy {
 		chaser = true;
 		runSpeed = 45;
 		wanderSpeed = 30;
+		attackSpeed = 1;
 
 		addAnimation("idle", [0,1], 2, true);
 		addAnimation("walk", [0,1], 10, true);
@@ -75,7 +76,5 @@ class Cultist extends Enemy {
 			facing = FlxObject.DOWN;
 			play("walk_down");
 		}
-
 	}
-
 }

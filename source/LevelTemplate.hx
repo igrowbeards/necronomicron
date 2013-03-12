@@ -55,8 +55,6 @@ class LevelTemplate extends FlxState {
 		add(player);
 		Registry.player = player;
 
-		FlxG.log(FlxG.level);
-
 		light = new Light(playerStartX,playerStartY);
 
 		staticLight = new StaticLight(35,21);
@@ -67,7 +65,6 @@ class LevelTemplate extends FlxState {
 		dialog = new DialogBox();
 		dialog.exists = false;
 		Registry.dialog = dialog;
-
 
 		pistol = new FlxWeapon("pistol",player,"x","y");
 		pistol.makePixelBullet(10,5,5,0xffa7b741);
@@ -119,6 +116,7 @@ class LevelTemplate extends FlxState {
 			FlxG.collide(player,exit);
 			FlxG.collide(player,deadGuard,getGun);
 			FlxG.collide(enemies,level);
+			FlxG.collide(player,enemies,injurePlayer);
 			FlxG.collide(pistol.group,level,bulletHitLevel);
 			FlxG.collide(pistol.group, enemies,bulletHitEnemy);
 			FlxG.collide(player,ammoPickup,getAmmo);
@@ -137,8 +135,6 @@ class LevelTemplate extends FlxState {
 			Registry.exit.openGate();
 		}
 
-		FlxG.log(Registry.totalComputers);
-
 	}
 
 	override public function draw():Void {
@@ -150,6 +146,11 @@ class LevelTemplate extends FlxState {
 		b.exists = false;
 		e.exists = false;
 		Registry.player.sanity--;
+	}
+
+	public function injurePlayer(p:FlxObject,cultist:FlxObject) {
+		var c:Cultist = cast(cultist,Cultist);
+		c.attack(Registry.player);
 	}
 
 	public function bulletHitLevel(b:FlxObject,l:FlxObject) {
