@@ -51,9 +51,19 @@ class LevelTemplate extends FlxState {
 		add(level);
 		Registry.level = level;
 
-		player = new Player(playerStartX,playerStartY);
+
+		if (Registry.player != null) {
+			player = new Player(playerStartX,playerStartY);
+			player.sanity = Registry.player.sanity;
+			player.health = Registry.player.health;
+			player.hasPistol = Registry.player.hasPistol;
+			player.pistolAmmo = Registry.player.pistolAmmo;
+			Registry.player = player;
+		} else {
+			player = new Player(playerStartX,playerStartY);
+			Registry.player = player;
+		}
 		add(player);
-		Registry.player = player;
 
 		light = new Light(playerStartX,playerStartY);
 
@@ -171,7 +181,6 @@ class LevelTemplate extends FlxState {
 		a.kill();
 		if (Registry.player.pistolAmmo <= 5) {
 			Registry.player.pistolAmmo++;
-			Registry.ammoGauge.changeAnim();
 		}
 	}
 

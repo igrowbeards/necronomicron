@@ -25,7 +25,10 @@ class HUD extends FlxGroup {
 
         ammoGauge = new AmmoGauge(5,5);
         Registry.ammoGauge = ammoGauge;
-        ammoGauge.exists = false;
+
+        if (!Registry.player.hasPistol) {
+        	ammoGauge.exists = false;
+    	}
 
         add(ammoGauge);
         add(health);

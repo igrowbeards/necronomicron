@@ -31,9 +31,11 @@ class AmmoGauge extends FlxSprite
 
 	}
 
-	public function changeAnim() {
+	override public function update():Void {
 		anim = Std.string(Registry.player.pistolAmmo);
-		play(anim);
+		if (anim != Std.string(this._curAnim)) {
+			play(anim);
+		}
 	}
 
 }

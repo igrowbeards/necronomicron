@@ -14,7 +14,7 @@ class Player extends FlxSprite
 	public var pistol:FlxWeapon;
 	public var pistolAmmo:Int;
 	public var hasPistol:Bool = false;
-	public var sanity:Int = 1;
+	public var sanity:Int = 10;
 
 	override public function new(X:Int,Y:Int) {
 
@@ -79,7 +79,6 @@ class Player extends FlxSprite
 		if (FlxG.keys.justPressed("Z") && Registry.player.pistolAmmo > 0 && hasPistol) {
 			if (Registry.pistol.fire()) {
 				Registry.player.pistolAmmo--;
-				Registry.ammoGauge.changeAnim();
 			}
 		}
 	}
