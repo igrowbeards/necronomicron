@@ -96,8 +96,11 @@ class LevelTemplate extends FlxState {
         add(enemies);
         Registry.enemies = enemies;
 
-		deadGuard = new DeadGuard(7,8);
-		add(deadGuard);
+        if (FlxG.level == 0) {
+			deadGuard = new DeadGuard(7,8);
+			add(deadGuard);
+        }
+
 
 		darkness = new FlxSprite(0,0);
 		darkness.makeGraphic(FlxG.width,FlxG.height,0xff000000);
@@ -149,6 +152,8 @@ class LevelTemplate extends FlxState {
 			Registry.player.sanity = -1;
 			loseSanity();
 		}
+
+		FlxG.log(FlxG.level);
 
 	}
 

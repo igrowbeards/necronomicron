@@ -57,6 +57,7 @@ class EndGame extends FlxState {
  		if (FlxG.keys.justPressed("SPACE")) {
 			FlxG.fade(0xff000000,1,changeLevel);
       Registry.erase();
+      FlxG.level = 0;
  		}
  	}
 

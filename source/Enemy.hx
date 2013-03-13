@@ -11,7 +11,6 @@ class Enemy extends FlxSprite {
 	public var wander:Bool = false;
 	public var wanderDirection:String;
 	public var wanderSpeed:Int = 20;
-
 	public var chaser:Bool = false;
 	public var chasing:Bool = false;
 	public var sightedPlayer:Bool = false;
@@ -75,7 +74,6 @@ class Enemy extends FlxSprite {
 		}
 
 		attackTimer += FlxG.elapsed;
-		FlxG.log(attackTimer);
 		super.update();
 
 	}
