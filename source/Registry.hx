@@ -6,8 +6,7 @@ import org.flixel.FlxSprite;
 import org.flixel.FlxTilemap;
 import org.flixel.plugin.photonstorm.FlxWeapon;
 
-class Registry
-{
+class Registry {
     public static var player:Player;
     public static var level:FlxTilemap;
     public static var pistol:FlxWeapon;
@@ -31,4 +30,19 @@ class Registry
 		["assets/dialog_gun.png","Lord Cthulu shall feast on your soul tonight!"],
 		["assets/player_dialog.png","So much randomness! It's chaos!"]
 	];
+
+    public static function erase():Void {
+        player = null;
+        level = null;
+        pistol = null;
+        darkness = null;
+        dialog = null;
+        ammoGauge = null;
+        enemies = null;
+        computers = null;
+        exit = null;
+        totalComputers = 0;
+        hud = null;
+        cod = null;
+    }
 }
