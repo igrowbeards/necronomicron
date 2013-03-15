@@ -23,7 +23,7 @@ class ApplicationMain {
 		if (loaded < total || true) /* Always wait for event */ {
 			
 			call_real = false;
-			mPreloader = new org.flixel.system.FlxPreloader();
+			mPreloader = new NMEPreloader();
 			nme.Lib.current.addChild(mPreloader);
 			mPreloader.onInit();
 			mPreloader.onUpdate(loaded,total);

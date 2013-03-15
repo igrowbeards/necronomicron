@@ -11,7 +11,7 @@ class Cultist extends Enemy {
 	override public function new(X:Int,Y:Int,wanderD:String):Void {
 
 		super(X,Y);
-		wander = true;
+		wander = false;
 
 		loadGraphic("assets/cultist.png",true,true,16,16,true);
 
@@ -20,6 +20,7 @@ class Cultist extends Enemy {
 		wanderSpeed = 30;
 		attackSpeed = 1;
 		attackStrength = 1;
+		facing = FlxObject.DOWN;
 
 		addAnimation("idle", [0,1], 2, true);
 		addAnimation("walk", [0,1], 10, true);
@@ -31,12 +32,12 @@ class Cultist extends Enemy {
 		play("idle");
 
 		if (wanderD == "horizontal") {
-			velocity.x = wanderSpeed;
-			wanderDirection = "horizontal";
+			//velocity.x = wanderSpeed;
+			//wanderDirection = "horizontal";
 		}
 		else if (wanderD == "vertical") {
-			velocity.y = -wanderSpeed;
-			wanderDirection = "vertical";
+			//velocity.y = -wanderSpeed;
+			//wanderDirection = "vertical";
 		}
 
 	}

@@ -19,7 +19,7 @@ import org.flixel.FlxPoint;
 import org.flixel.FlxGroup;
 import org.flixel.plugin.photonstorm.FlxWeapon;
 import org.flixel.plugin.photonstorm.FlxMath;
-import addons.FlxBackdrop;
+import org.flixel.addons.FlxBackdrop;
 
 class LevelTemplate extends FlxState {
 
@@ -43,7 +43,7 @@ class LevelTemplate extends FlxState {
 	public var exit:Exit;
 
 	override public function create():Void {
-		FlxG.bgColor = 0xff000000;
+		FlxG.bgColor = 0xff202020;
 		FlxG.camera.antialiasing = false;
 		FlxG.mouse.hide();
 		level = new FlxTilemap();
@@ -76,11 +76,11 @@ class LevelTemplate extends FlxState {
 		dialog.exists = false;
 		Registry.dialog = dialog;
 
-		pistol = new FlxWeapon("pistol",player,"x","y");
+		pistol = new FlxWeapon("pistol",player);
 		pistol.makePixelBullet(10,5,5,0xffa7b741);
 		pistol.setFireRate(500);
 		pistol.setBulletSpeed(250);
-		pistol.setParent(player,"x","y",8,8,true);
+		pistol.setParent(player);
 		add(pistol.group);
 		Registry.pistol = pistol;
 
@@ -112,7 +112,6 @@ class LevelTemplate extends FlxState {
 		add(staticLight);
 		//add(darkness);
 		add(dialog);
-        //add(ammoGauge);
         add(hud);
         add(new FlxBackdrop("assets/scanlines.png", 0, 0, true, true));
         //add(new FlxBackdrop("assets/vignette.png", 0, 0, false, false));
@@ -152,9 +151,6 @@ class LevelTemplate extends FlxState {
 			Registry.player.sanity = -1;
 			loseSanity();
 		}
-
-		FlxG.log(FlxG.level);
-
 	}
 
 	override public function draw():Void {
@@ -211,7 +207,7 @@ class LevelTemplate extends FlxState {
 	}
 
 	public function addCultists() {
-
+		/*
 		for (ty in 0...level.heightInTiles) {
 			for (tx in 0...level.widthInTiles) {
 				if (level.getTile(tx,ty) == 0) {
@@ -221,6 +217,8 @@ class LevelTemplate extends FlxState {
 				}
 			}
 		}
+		*/
+		cultists.add(new Cultist(19,13,"horizontal"));
 	}
 
 	public function addEnemies() {

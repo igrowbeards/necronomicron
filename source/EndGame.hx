@@ -4,7 +4,7 @@ import org.flixel.FlxG;
 import org.flixel.FlxState;
 import org.flixel.FlxText;
 import org.flixel.plugin.photonstorm.FlxDisplay;
-import addons.FlxBackdrop;
+import org.flixel.addons.FlxBackdrop;
 
 class EndGame extends FlxState {
 

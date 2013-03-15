@@ -19,7 +19,6 @@ import org.flixel.FlxPoint;
 import org.flixel.FlxGroup;
 import org.flixel.plugin.photonstorm.FlxWeapon;
 import org.flixel.plugin.photonstorm.FlxMath;
-import addons.FlxBackdrop;
 
 class Level1 extends LevelTemplate {
 
