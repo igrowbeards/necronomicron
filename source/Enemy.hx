@@ -42,11 +42,13 @@ class Enemy extends FlxSprite {
 					if (Registry.level.ray(new FlxPoint(this.x,this.y),new FlxPoint(Registry.player.x, Registry.player.y))) {
 						// they've sighted the player - start chasing
 						FlxG.log("spotted on upper right");
+						sightedPlayer = true;
 					}
 				}
 				else if (y < Registry.player.y && Registry.player.y - y < 25) {
 					if (Registry.level.ray(new FlxPoint(this.x,this.y),new FlxPoint(Registry.player.x, Registry.player.y))) {
 						// they've sighted the player - start chasing
+						sightedPlayer = true;
 						FlxG.log("spotted on lower right");
 					}
 				}
@@ -59,12 +61,14 @@ class Enemy extends FlxSprite {
 					if (Registry.level.ray(new FlxPoint(this.x,this.y),new FlxPoint(Registry.player.x, Registry.player.y))) {
 						// they've sighted the player - start chasing
 						FlxG.log("spotted on upper left");
+						sightedPlayer = true;
 					}
 				}
 				else if (y < Registry.player.y && Registry.player.y - y < 25) {
 					if (Registry.level.ray(new FlxPoint(this.x,this.y),new FlxPoint(Registry.player.x, Registry.player.y))) {
 						// they've sighted the player - start chasing
 						FlxG.log("spotted on lower left");
+						sightedPlayer = true;
 					}
 				}
 			}
@@ -76,12 +80,14 @@ class Enemy extends FlxSprite {
 					if (Registry.level.ray(new FlxPoint(this.x,this.y),new FlxPoint(Registry.player.x, Registry.player.y))) {
 						// they've sighted the player - start chasing
 						FlxG.log("spotted on up and left");
+						sightedPlayer = true;
 					}
 				}
 				else if (x < Registry.player.x && Registry.player.x - x < 25) {
 					if (Registry.level.ray(new FlxPoint(this.x,this.y),new FlxPoint(Registry.player.x, Registry.player.y))) {
 						// they've sighted the player - start chasing
 						FlxG.log("spotted on up and right");
+						sightedPlayer = true;
 					}
 				}
 			}
@@ -93,22 +99,21 @@ class Enemy extends FlxSprite {
 					if (Registry.level.ray(new FlxPoint(this.x,this.y),new FlxPoint(Registry.player.x, Registry.player.y))) {
 						// they've sighted the player - start chasing
 						FlxG.log("spotted on down and left");
+						sightedPlayer = true;
 					}
 				}
 				else if (x < Registry.player.x && Registry.player.x - x < 25) {
 					if (Registry.level.ray(new FlxPoint(this.x,this.y),new FlxPoint(Registry.player.x, Registry.player.y))) {
 						// they've sighted the player - start chasing
 						FlxG.log("spotted on down and right");
+						sightedPlayer = true;
 					}
 				}
 			}
 
 		}
 
-		FlxG.log("---");
-
 		if (wander == true && !sightedPlayer) {
-
 
 			if (wanderDirection == "horizontal") {
 				if (justTouched(FlxObject.LEFT)) {
