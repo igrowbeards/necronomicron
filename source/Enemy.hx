@@ -40,81 +40,6 @@ class Enemy extends FlxSprite {
 		//if (chaser && !sightedPlayer) {
 		if (chaser) {
 
-<<<<<<< HEAD
-			// facing right && player is in range
-			if (facing == FlxObject.RIGHT && Registry.player.x > this.x && Registry.player.x - this.x < lineOfSightDistance) {
-				// and if they're in the proper vertical range
-				if (y > Registry.player.y && y - Registry.player.y < 25) {
-					//and if the level isn't blocking their view
-					if (Registry.level.ray(new FlxPoint(this.x,this.y),new FlxPoint(Registry.player.x, Registry.player.y))) {
-						// they've sighted the player - start chasing
-						FlxG.log("spotted on upper right");
-						sightedPlayer = true;
-					}
-				}
-				else if (y < Registry.player.y && Registry.player.y - y < 25) {
-					if (Registry.level.ray(new FlxPoint(this.x,this.y),new FlxPoint(Registry.player.x, Registry.player.y))) {
-						// they've sighted the player - start chasing
-						sightedPlayer = true;
-						FlxG.log("spotted on lower right");
-					}
-				}
-			}
-			// facing left && player is in range
-			else if (facing == FlxObject.LEFT && Registry.player.x < this.x && this.x - Registry.player.x < lineOfSightDistance) {
-				// and if they're in the proper vertical range
-				if (y > Registry.player.y && y - Registry.player.y < 25) {
-					//and if the level isn't blocking their view
-					if (Registry.level.ray(new FlxPoint(this.x,this.y),new FlxPoint(Registry.player.x, Registry.player.y))) {
-						// they've sighted the player - start chasing
-						FlxG.log("spotted on upper left");
-						sightedPlayer = true;
-					}
-				}
-				else if (y < Registry.player.y && Registry.player.y - y < 25) {
-					if (Registry.level.ray(new FlxPoint(this.x,this.y),new FlxPoint(Registry.player.x, Registry.player.y))) {
-						// they've sighted the player - start chasing
-						FlxG.log("spotted on lower left");
-						sightedPlayer = true;
-					}
-				}
-			}
-			// facing up && player is in range
-			else if (facing == FlxObject.UP && Registry.player.y < this.y && this.y - Registry.player.y < lineOfSightDistance) {
-				// and if they're in the proper horizontal range
-				if (x > Registry.player.x && x - Registry.player.x < 25) {
-					//and if the level isn't blocking their view
-					if (Registry.level.ray(new FlxPoint(this.x,this.y),new FlxPoint(Registry.player.x, Registry.player.y))) {
-						// they've sighted the player - start chasing
-						FlxG.log("spotted on up and left");
-						sightedPlayer = true;
-					}
-				}
-				else if (x < Registry.player.x && Registry.player.x - x < 25) {
-					if (Registry.level.ray(new FlxPoint(this.x,this.y),new FlxPoint(Registry.player.x, Registry.player.y))) {
-						// they've sighted the player - start chasing
-						FlxG.log("spotted on up and right");
-						sightedPlayer = true;
-					}
-				}
-			}
-			// facing down && player is in range
-			else if (facing == FlxObject.DOWN && Registry.player.y > this.y && Registry.player.y - this.y < lineOfSightDistance) {
-				// and if they're in the proper horizontal range
-				if (x > Registry.player.x && x - Registry.player.x < 25) {
-					//and if the level isn't blocking their view
-					if (Registry.level.ray(new FlxPoint(this.x,this.y),new FlxPoint(Registry.player.x, Registry.player.y))) {
-						// they've sighted the player - start chasing
-						FlxG.log("spotted on down and left");
-						sightedPlayer = true;
-					}
-				}
-				else if (x < Registry.player.x && Registry.player.x - x < 25) {
-					if (Registry.level.ray(new FlxPoint(this.x,this.y),new FlxPoint(Registry.player.x, Registry.player.y))) {
-						// they've sighted the player - start chasing
-						FlxG.log("spotted on down and right");
-						sightedPlayer = true;
-=======
 			var angle:Float = FlxVelocity.angleBetween(this,Registry.player,true);
 			var distance:Int = FlxVelocity.distanceBetween(this,Registry.player);
 			pathStart = new FlxPoint(this.x + this.width / 2, this.y + this.height / 2);
@@ -164,7 +89,6 @@ class Enemy extends FlxSprite {
 							sightedPlayer = true;
 							FlxG.log("spotted down");
 						}
->>>>>>> cone_of_vision
 					}
 				}
 			}
@@ -174,10 +98,7 @@ class Enemy extends FlxSprite {
 
 		}
 
-<<<<<<< HEAD
-=======
 
->>>>>>> cone_of_vision
 		if (wander == true && !sightedPlayer) {
 
 			if (wanderDirection == "horizontal") {
