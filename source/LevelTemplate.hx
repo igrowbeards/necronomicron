@@ -218,7 +218,7 @@ class LevelTemplate extends FlxState {
 			}
 		}
 		*/
-		cultists.add(new Cultist(19,13,"horizontal"));
+		cultists.add(new Cultist(19,11,"vertical"));
 	}
 
 	public function addEnemies() {

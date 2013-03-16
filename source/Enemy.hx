@@ -5,6 +5,8 @@ import org.flixel.FlxSprite;
 import org.flixel.FlxPath;
 import org.flixel.FlxPoint;
 import org.flixel.FlxObject;
+import org.flixel.FlxTilemap;
+import org.flixel.plugin.photonstorm.FlxVelocity;
 
 class Enemy extends FlxSprite {
 
@@ -22,7 +24,7 @@ class Enemy extends FlxSprite {
 	public var attackSpeed:Float;
 	public var attackStrength:Int;
 	public var attackTimer:Float;
-	public var lineOfSightDistance:Float = 150;
+	public var lineOfSightDistance:Float = 120;
 
 	override public function new(X:Int,Y:Int) {
 		super(X * 16,Y * 16);
@@ -32,8 +34,13 @@ class Enemy extends FlxSprite {
 
 	override public function update():Void {
 
+		//FlxG.log(FlxVelocity.angleBetween(this, Registry.player,true));
+		//FlxG.log(FlxVelocity.distanceBetween(this,Registry.player));
+
+		//if (chaser && !sightedPlayer) {
 		if (chaser) {
 
+<<<<<<< HEAD
 			// facing right && player is in range
 			if (facing == FlxObject.RIGHT && Registry.player.x > this.x && Registry.player.x - this.x < lineOfSightDistance) {
 				// and if they're in the proper vertical range
@@ -107,12 +114,70 @@ class Enemy extends FlxSprite {
 						// they've sighted the player - start chasing
 						FlxG.log("spotted on down and right");
 						sightedPlayer = true;
+=======
+			var angle:Float = FlxVelocity.angleBetween(this,Registry.player,true);
+			var distance:Int = FlxVelocity.distanceBetween(this,Registry.player);
+			pathStart = new FlxPoint(this.x + this.width / 2, this.y + this.height / 2);
+			pathEnd = new FlxPoint(Registry.player.x + Registry.player.width / 2, Registry.player.y + Registry.player.height / 2);
+
+			//vision right
+			if (facing == FlxObject.RIGHT) {
+				if (this.x < Registry.player.x && distance <= lineOfSightDistance) {
+					if (angle > -10 && angle < 10) {
+						if (Registry.level.ray(pathStart,pathEnd,null,2)) {
+							sightedPlayer = true;
+							FlxG.log("spotted right");
+						}
 					}
 				}
 			}
 
+			// vision left
+			if (facing == FlxObject.LEFT) {
+				if (this.x > Registry.player.x && distance <= lineOfSightDistance) {
+					if (angle > 170 || angle < -170) {
+						if (Registry.level.ray(pathStart,pathEnd,null,2)) {
+							sightedPlayer = true;
+							FlxG.log("spotted left");
+						}
+					}
+				}
+			}
+
+			// vision up
+			if (facing == FlxObject.UP) {
+				if (this.y > Registry.player.y && distance <= lineOfSightDistance) {
+					if (angle > -100 && angle < -80) {
+						if (Registry.level.ray(pathStart,pathEnd,null,2)) {
+							sightedPlayer = true;
+							FlxG.log("spotted up");
+						}
+					}
+				}
+			}
+
+			// vision down
+			if (facing == FlxObject.DOWN) {
+				if (this.y < Registry.player.y && distance <= lineOfSightDistance) {
+					if (angle < 110 && angle > 70) {
+						if (Registry.level.ray(pathStart,pathEnd,null,2)) {
+							sightedPlayer = true;
+							FlxG.log("spotted down");
+						}
+>>>>>>> cone_of_vision
+					}
+				}
+			}
 		}
 
+		if (chaser && sightedPlayer) {
+
+		}
+
+<<<<<<< HEAD
+=======
+
+>>>>>>> cone_of_vision
 		if (wander == true && !sightedPlayer) {
 
 			if (wanderDirection == "horizontal") {

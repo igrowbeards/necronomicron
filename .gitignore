@@ -1,3 +1,5 @@
 ## generic files to ignore
 work/
+export/
 work/*
+export/*
