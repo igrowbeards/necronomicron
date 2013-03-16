@@ -80,7 +80,7 @@ class LevelTemplate extends FlxState {
 		pistol.makePixelBullet(10,5,5,0xffa7b741);
 		pistol.setFireRate(500);
 		pistol.setBulletSpeed(250);
-		pistol.setParent(player);
+		pistol.setParent(player,0,0,true);
 		add(pistol.group);
 		Registry.pistol = pistol;
 
@@ -126,13 +126,13 @@ class LevelTemplate extends FlxState {
 			super.update();
 			FlxG.collide(player,level);
 			FlxG.collide(player,exit);
-			FlxG.collide(player,deadGuard,getGun);
+			FlxG.overlap(player,deadGuard,getGun);
 			FlxG.collide(enemies,level);
 			FlxG.collide(player,enemies,injurePlayer);
 			FlxG.collide(pistol.group,level,bulletHitLevel);
 			FlxG.collide(pistol.group, enemies,bulletHitEnemy);
 			FlxG.collide(player,ammoPickup,getAmmo);
-			FlxG.collide(player,computers,hackComputer);
+			FlxG.overlap(player,computers,hackComputer);
 
 			if (player.x > FlxG.width) {
 				fadeOutLevel();
@@ -151,6 +151,7 @@ class LevelTemplate extends FlxState {
 			Registry.player.sanity = -1;
 			loseSanity();
 		}
+
 	}
 
 	override public function draw():Void {
@@ -174,8 +175,10 @@ class LevelTemplate extends FlxState {
 	}
 
 	public function hackComputer(pRef:FlxObject,cRef:FlxObject) {
-		var c:Computer = cast(cRef,Computer);
-		c.hack();
+		if (FlxG.keys.justPressed("X")) {
+			var c:Computer = cast(cRef,Computer);
+			c.hack();
+		}
 	}
 
 	public function getAmmo(p:FlxObject,a:FlxObject) {
@@ -199,11 +202,13 @@ class LevelTemplate extends FlxState {
 	}
 
 	public function getGun(p:FlxObject,dg:FlxObject):Void {
-		Registry.dialog.longUpdate(Registry.conversation_1);
-		Registry.player.pistolAmmo = 6;
-		Registry.player.hasPistol = true;
-		Registry.hud.ammoGauge.exists = true;
-		dg.allowCollisions = FlxObject.NONE;
+		if (FlxG.keys.justPressed("X")) {
+			Registry.dialog.longUpdate(Registry.conversation_1);
+			Registry.player.pistolAmmo = 6;
+			Registry.player.hasPistol = true;
+			Registry.hud.ammoGauge.exists = true;
+			dg.allowCollisions = FlxObject.NONE;
+		}
 	}
 
 	public function addCultists() {
@@ -250,7 +255,8 @@ class LevelTemplate extends FlxState {
 		computers.add(new Computer(35,21));
 		computers.add(new Computer(1,28));
 		computers.add(new Computer(12,1));
-		Registry.totalComputers = 3;
+		Registry.totalComputers = computers.members.length;
+		FlxG.log(Registry.totalComputers);
 	}
 
 	public function loseSanity() {

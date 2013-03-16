@@ -30,7 +30,6 @@ class Level1 extends LevelTemplate {
 		addComputers();
 		addCultists();
 		addEnemies();
-		addComputers();
 		placeExit(39,8);
  	}
 

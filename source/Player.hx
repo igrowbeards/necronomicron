@@ -14,12 +14,17 @@ class Player extends FlxSprite
 	public var pistol:FlxWeapon;
 	public var pistolAmmo:Int;
 	public var hasPistol:Bool = false;
-	public var sanity:Int = 5;
+	public var sanity:Int = 10;
 
 	override public function new(X:Int,Y:Int) {
 
 		super(X * 16,Y * 16);
 		health = 5;
+		width = 14;
+		offset.x = 1;
+		height = 14;
+		offset.y = 1;
+		pistolAmmo = 0;
 
 		loadGraphic("assets/player.png",true,true,16,16,true);
 
@@ -31,14 +36,6 @@ class Player extends FlxSprite
 		addAnimation("walk_up", [8,10,8,11], 10, true);
 
 		play("idle");
-
-
-		width = 14;
-		offset.x = 1;
-		height = 14;
-		offset.y = 1;
-
-		pistolAmmo = 0;
 
 		if (FlxG.getPlugin(FlxControl) == null) {
 			FlxG.addPlugin(new FlxControl());

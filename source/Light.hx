@@ -12,9 +12,7 @@ class Light extends FlxSprite {
 	override public function new(X:Float,Y:Float):Void {
 		super(X,Y);
 		loadGraphic("assets/glow-light.png");
-		//makeGraphic(50,50,0x00ffffff);
 		this.blend = nme.display.BlendMode.SCREEN;
-		//darkness = Registry.darkness;
 	}
 
 

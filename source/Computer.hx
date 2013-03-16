@@ -14,7 +14,7 @@ class Computer extends FlxSprite {
 		super(X * 16, Y * 16);
 		loadGraphic("assets/computer.png");
 		immovable = true;
-		hackDelay = 10;
+		hackDelay = 1;
 
 		loadGraphic("assets/computer.png",true,true,16,16,true);
 
@@ -26,9 +26,11 @@ class Computer extends FlxSprite {
 	}
 
 	public function hack():Void {
-		if (!hacked) {
+		this.allowCollisions = FlxObject.NONE;
+		if (hacked == false) {
 			play("hacked");
 			hacked = true;
+			FlxG.log("hack");
 		}
 	}
 
@@ -44,6 +46,7 @@ class Computer extends FlxSprite {
 			hackDelay = -1;
 			play("blown");
 			Registry.totalComputers--;
+			FlxG.log("hackzrd");
 		}
 
 	}
