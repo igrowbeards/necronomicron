@@ -21,6 +21,12 @@ class Cultist extends Enemy {
 		attackSpeed = 1;
 		attackStrength = 1;
 
+		/* for debug delete for production */
+
+		sightedPlayer = true;
+
+		/* end debug */
+
 		addAnimation("idle", [0,1], 2, true);
 		addAnimation("walk", [0,1], 10, true);
 		addAnimation("idle_down", [2,3], 2, true);

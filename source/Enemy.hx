@@ -34,16 +34,31 @@ class Enemy extends FlxSprite {
 
 	override public function update():Void {
 
-		//FlxG.log(FlxVelocity.angleBetween(this, Registry.player,true));
-		//FlxG.log(FlxVelocity.distanceBetween(this,Registry.player));
 
-		//if (chaser && !sightedPlayer) {
-		if (chaser) {
+		var angle:Float = FlxVelocity.angleBetween(this,Registry.player,true);
+		var distance:Int = FlxVelocity.distanceBetween(this,Registry.player);
 
-			var angle:Float = FlxVelocity.angleBetween(this,Registry.player,true);
-			var distance:Int = FlxVelocity.distanceBetween(this,Registry.player);
+		if (chaser && sightedPlayer) {
+			if (enemyPath != null) {
+				this.stopFollowingPath(true);
+			}
+
 			pathStart = new FlxPoint(this.x + this.width / 2, this.y + this.height / 2);
 			pathEnd = new FlxPoint(Registry.player.x + Registry.player.width / 2, Registry.player.y + Registry.player.height / 2);
+
+			enemyPath = Registry.level.findPath(pathStart, pathEnd);
+
+			if (enemyPath != null) {
+				this.followPath(enemyPath);
+			}
+
+			if (this.pathSpeed == 0) {
+				this.velocity.x = 0;
+				this.velocity.y = 0;
+			}
+		}
+
+		if (!sightedPlayer) {
 
 			//vision right
 			if (facing == FlxObject.RIGHT) {
@@ -92,10 +107,6 @@ class Enemy extends FlxSprite {
 					}
 				}
 			}
-		}
-
-		if (chaser && sightedPlayer) {
-
 		}
 
 
